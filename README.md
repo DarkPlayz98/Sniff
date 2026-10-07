@@ -39,8 +39,8 @@ No API key ever ships in the front end.
 
 ```
 index.html   # the whole app (UI, rules engine, game, share cards)
-hark.css     # base styles
-hark.js      # base helpers
+Sniff.css     # base styles
+sniff.js      # base helpers
 README.md
 ```
 
