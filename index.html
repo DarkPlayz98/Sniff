@@ -325,6 +325,55 @@
       .x-ok .x-i{width:24px;height:24px}
       .x-toast{background:rgba(20,20,20,.9)}
       [hidden]{display:none!important}
+
+      /* ---- Accounts, Family Shield, Pro coming soon ---- */
+      .x-top{position:relative}
+      .x-top span{text-align:right;line-height:1.3}
+      .x-acct{flex:none;width:44px;height:44px;padding:0;border-radius:50%;display:grid;place-items:center;overflow:hidden;cursor:pointer;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 0 0 1px rgba(20,20,20,.06);color:var(--ink);font:600 15px/1 system-ui,-apple-system,sans-serif}
+      .x-acct.is-in{background:#141414;color:#fff;box-shadow:none}
+      .x-top .x-acct svg{width:18px;height:18px}
+      .x-acct img,.x-av img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+      .x-av{overflow:hidden}
+      .x-menu{position:absolute;top:56px;right:0;z-index:15;width:250px;padding:18px;border-radius:24px;display:grid;gap:4px;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--gline);box-shadow:0 18px 40px -18px rgba(60,50,40,.35)}
+      .x-menu b{font-size:15px;font-weight:600}
+      .x-menu small{font-size:13px;color:var(--mute);word-break:break-all;margin-bottom:10px}
+      .x-soon{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;padding:7px 14px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid rgba(20,20,20,.08);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+      .x-soon:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--sus)}
+      .x-pro{list-style:none;margin:0;display:grid;gap:16px}
+      .x-pro li{display:flex;align-items:center;gap:14px;font-size:16px;font-weight:500;line-height:1.35}
+      .x-err{margin:0;font-size:14px;line-height:1.4;color:color-mix(in srgb,var(--scam) 80%,#141414)}
+      .x-err:empty{display:none}
+      .x-spin{display:none;flex:none;width:18px;height:18px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:x-spin .7s linear infinite}
+      .is-busy .x-spin{display:inline-block}
+      @keyframes x-spin{to{transform:rotate(360deg)}}
+      .x-wl-done{text-align:center}
+      .x-wl-done p{margin:0;font-size:15px;line-height:1.5}
+      .x-note{margin:0;font-size:14px;line-height:1.5;color:var(--mute)}
+      .x-note b{color:var(--ink);font-weight:600}
+      .x-ct{margin:0;display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600}
+      .x-ct .x-i{color:var(--mute)}
+      .x-or{display:flex;align-items:center;gap:12px;margin:0;font-size:13px;color:var(--mute)}
+      .x-or:before,.x-or:after{content:"";flex:1;height:1px;background:var(--line)}
+      .x-linkrow{display:flex;justify-content:space-between;flex-wrap:wrap;gap:0 12px}
+      .x-linkrow .x-link{justify-self:auto;padding:0}
+      .x-calm{display:flex;align-items:flex-start;gap:14px}
+      .x-code{margin:0;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:40px;letter-spacing:.18em;padding:12px 0 4px}
+      .x-codein{text-transform:uppercase;letter-spacing:.2em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+      .x-list{display:grid;gap:14px}
+      .x-list .x-who+.x-who{border-top:1px solid var(--line);padding-top:14px}
+      .x-switchrow{display:flex;align-items:center;gap:16px;font-size:15px;line-height:1.4;font-weight:500;margin-top:16px}
+      .x-switch{flex:none;margin-left:auto;position:relative;width:52px;height:32px;border-radius:999px;border:0;padding:0;cursor:pointer;background:rgba(20,20,20,.14);transition:background .2s}
+      .x-switch:after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+      .x-switch[aria-checked=true]{background:#141414}
+      .x-switch[aria-checked=true]:after{transform:translateX(20px)}
+      .x-switch:before{content:"";position:absolute;inset:-6px}
+      .x-alert{display:grid;gap:10px;padding:20px}
+      .x-alert p{margin:0;font-size:14px;line-height:1.5}
+      .x-alert small{font-size:13px;color:var(--mute)}
+      .x-vp{justify-self:start;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.08em;padding:7px 12px 7px 10px;border-radius:999px;background:color-mix(in srgb,var(--c) 12%,#fff);color:color-mix(in srgb,var(--c) 50%,#141414)}
+      .x-vp .x-i{width:16px;height:16px;color:var(--c)}
+      .x-tabs button.x-has-dot:before{content:"";position:absolute;top:8px;right:calc(50% - 16px);width:8px;height:8px;border-radius:50%;background:var(--scam);box-shadow:0 0 0 2px #fff}
+      @media (prefers-reduced-motion:reduce){.x-spin{animation-duration:2s}.x-switch,.x-switch:after{transition:none}}
     </style>
   </head>
   <body>
@@ -349,9 +398,17 @@
         <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
         <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
         <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-infinity" viewBox="0 0 24 24"><path d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4Zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4Z"/></symbol>
+        <symbol id="i-image" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21"/></symbol>
+        <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+        <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
+        <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+        <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
         <symbol id="i-package" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 8.7 5 8.7-5"/></symbol>
       </svg>
-      <header class="x-top"><svg width="30" height="30" aria-hidden="true"><use href="#logo"/></svg><b>sniff<em id="wm"></em></b><span>Sniff it before you trust it.</span></header>
+      <header class="x-top"><svg width="30" height="30" aria-hidden="true"><use href="#logo"/></svg><b>sniff<em id="wm"></em></b><span>Sniff it before you trust it.</span><button class="x-acct" id="acct" aria-label="Account" aria-haspopup="true"><svg class="x-i" aria-hidden="true"><use href="#i-user"/></svg></button>
+        <div class="x-menu" id="acctMenu" role="menu" hidden><b id="menuName"></b><small id="menuMail"></small><button class="x-btn" id="signOut" role="menuitem"><svg class="x-i" aria-hidden="true"><use href="#i-logout"/></svg>Sign out</button></div></header>
 
       <main>
         <section data-tab="sniff">
@@ -364,8 +421,8 @@
           <div id="out"></div>
           <div class="x-card x-up" id="up" hidden>
             <h3><svg class="x-i" aria-hidden="true"><use href="#i-lock"/></svg>You've used today's 15 free checks</h3>
-            <p>Sniff Pro gives you unlimited checks, screenshot scanning and deep link scans — from <span data-p="₹99|$3.99">₹99</span>/mo.</p>
-            <button class="x-go" id="toPro"><svg class="x-i" aria-hidden="true"><use href="#i-sparkles"/></svg>See Sniff Pro</button>
+            <p>Pro is coming soon — join early access. It brings unlimited checks, screenshot scanning and link reputation lookups.</p>
+            <button class="x-go" id="toPro"><svg class="x-i" aria-hidden="true"><use href="#i-sparkles"/></svg>Join early access</button>
             <button class="x-link" id="reset">Continue free (demo)</button>
           </div>
           <h2 class="x-h2">Going around this week</h2>
@@ -380,42 +437,27 @@
 
         <section data-tab="family" hidden>
           <h1 class="x-h1">Your parents get these messages <em>too.</em></h1>
-          <p class="x-sub">Family Shield: add up to 6 people. When they're unsure, they forward it to Sniff — and you get a heads-up if they nearly fall for one.</p>
-          <div class="x-row"><h2 class="x-h2">Your family</h2><span class="x-n" id="fcount">0 of 6</span></div>
-          <div class="x-fam" id="fam"></div>
-          <div class="x-row"><h2 class="x-h2">Protection report</h2><span class="x-tag">Sample</span></div>
-          <div class="x-card x-rep">
-            <p><b>This month: 7 checked · 2 scams stopped</b></p>
-            <div class="x-nums"><div><b>7</b><small>messages checked</small></div><div><b>2</b><small>scams stopped</small></div></div>
-            <p class="x-note">You'll get one of these every month, plus an alert the moment someone nearly falls for one.</p>
-          </div>
+          <p class="x-sub">Family Shield links your family's Sniff. When one of you catches a scam, everyone gets a heads-up before the same message reaches them.</p>
+          <div id="famBox"><div class="x-card"><p class="x-note" role="status">Loading your family…</p></div></div>
         </section>
 
         <section data-tab="pro" hidden>
           <h1 class="x-h1">sniff <em>pro</em></h1>
-          <p class="x-sub">Sniff without limits. Start free. Upgrade when you want more — or cover the whole family.</p>
-          <div class="x-seg" id="cur" role="group" aria-label="Currency"><button data-c="0" aria-pressed="true">₹</button><button data-c="1" aria-pressed="false">$</button></div>
-          <div class="x-plans">
-            <div class="x-card x-plan">
-              <h3>Free</h3>
-              <p class="x-price"><span data-p="₹0|$0">₹0</span><small> forever</small></p>
-              <ul class="x-feat"><li>15 checks a day</li><li>Spot It daily game</li><li>Share warnings with family</li></ul>
-              <button class="x-btn" disabled>Your current plan</button>
-            </div>
-            <div class="x-card x-plan">
-              <h3><svg class="x-i" aria-hidden="true"><use href="#i-sparkles"/></svg>Sniff Pro</h3>
-              <p class="x-price"><span data-p="₹99|$3.99">₹99</span><small>/mo</small></p>
-              <p class="x-ann">or <span data-p="₹799|$29.99">₹799</span>/year <span class="x-save">save 33%</span></p>
-              <ul class="x-feat"><li>Unlimited checks</li><li>Screenshot scanning</li><li>Deep link scan</li><li>“What to say” scripts for scam calls</li></ul>
-              <button class="x-btn" data-sheet="Sniff Pro">Get Sniff Pro</button>
-            </div>
-            <div class="x-card x-plan x-plan--hi">
-              <span class="x-badge">Most popular</span>
-              <h3><svg class="x-i" aria-hidden="true"><use href="#i-users"/></svg>Sniff Family</h3>
-              <p class="x-price"><span data-p="₹199|$6.99">₹199</span><small>/mo</small></p>
-              <ul class="x-feat"><li>Pro for up to 6 people</li><li>Near-miss alerts</li><li>Monthly family report</li></ul>
-              <button class="x-go" data-sheet="Sniff Family">Get Sniff Family</button>
-            </div>
+          <p class="x-soon">Coming soon</p>
+          <p class="x-sub">Everything in Sniff, with no daily limit. Join early access and we'll tell you the day it launches.</p>
+          <ul class="x-card x-pro">
+            <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-infinity"/></svg></span>Unlimited checks</li>
+            <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-image"/></svg></span>Screenshot scanning</li>
+            <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-link"/></svg></span>Link reputation lookups</li>
+            <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-zap"/></svg></span>Priority AI</li>
+          </ul>
+          <h2 class="x-h2">Get early access</h2>
+          <div class="x-card">
+            <form class="x-form" data-wl novalidate>
+              <input class="x-in" type="email" id="proEmail" placeholder="you@example.com" aria-label="Email" autocomplete="email" />
+              <p class="x-err" role="alert"></p>
+              <button class="x-go" style="margin-top:0"><span class="x-spin" aria-hidden="true"></span><span>Join early access</span></button>
+            </form>
           </div>
           <div class="x-api"><p>Banks &amp; telecoms: put Sniff in your app — <b>Sniff API</b></p><button class="x-btn" data-sheet="Sniff API"><svg class="x-i" aria-hidden="true"><use href="#i-phone"/></svg>Talk to us</button></div>
         </section>
@@ -433,12 +475,39 @@
         <div class="x-sheet__box" role="dialog" aria-modal="true" aria-labelledby="sheetT">
           <div class="x-grab"></div>
           <button class="x-x" id="sheetX" aria-label="Close"><svg class="x-i" aria-hidden="true"><use href="#i-x"/></svg></button>
-          <form class="x-form" id="sheetF">
-            <div><h2 id="sheetT">Join the early-access list</h2><p class="x-sub" id="sheetSub" style="margin:0"></p></div>
-            <input class="x-in" type="email" id="email" required placeholder="you@example.com" aria-label="Email" autocomplete="email" />
-            <button class="x-go" style="margin-top:0">Join the list</button>
-          </form>
-          <div class="x-done" id="sheetOk" hidden><span class="x-ok"><svg class="x-i" aria-hidden="true"><use href="#i-check"/></svg></span><h2>You're on the list</h2><p class="x-sub" style="margin:0">We'll email you the moment it's ready.</p></div>
+          <div class="x-form">
+            <div><h2 id="sheetT">Join the early-access list</h2><p class="x-sub" id="sheetSub" style="margin:0">Leave your work email and our team will reach out about the Sniff API.</p></div>
+            <form class="x-form" data-wl novalidate>
+              <input class="x-in" type="email" id="email" placeholder="you@example.com" aria-label="Email" autocomplete="email" />
+              <p class="x-err" role="alert"></p>
+              <button class="x-go" style="margin-top:0"><span class="x-spin" aria-hidden="true"></span><span>Join the list</span></button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="x-sheet" id="auth" hidden>
+        <div class="x-sheet__bg" data-close></div>
+        <div class="x-sheet__box" role="dialog" aria-modal="true" aria-labelledby="authT">
+          <div class="x-grab"></div>
+          <button class="x-x" data-close aria-label="Close"><svg class="x-i" aria-hidden="true"><use href="#i-x"/></svg></button>
+          <div class="x-form">
+            <div><h2 id="authT">Sign in to Sniff</h2><p class="x-sub" id="authSub" style="margin:0">Sign in to start Family Shield and warn each other about scams.</p></div>
+            <p class="x-note" id="authLoad" role="status">Getting sign-in ready…</p>
+            <div class="x-card x-calm" id="authOff" hidden><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-lock"/></svg></span><p class="x-note"><b>Accounts are switched off on this preview.</b> Checking messages and Spot It still work.</p></div>
+            <div class="x-form" id="authOn" hidden>
+              <button class="x-btn" id="gBtn" type="button"><svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>Continue with Google</button>
+              <p class="x-or">or</p>
+              <form class="x-form" id="authF" novalidate>
+                <input class="x-in" id="aName" placeholder="Your name" aria-label="Your name" autocomplete="name" maxlength="40" hidden />
+                <input class="x-in" type="email" id="aEmail" placeholder="you@example.com" aria-label="Email" autocomplete="email" />
+                <input class="x-in" type="password" id="aPass" placeholder="Password" aria-label="Password" autocomplete="current-password" />
+                <p class="x-err" id="authErr" role="alert"></p>
+                <p class="x-note" id="authNote" role="status"></p>
+                <button class="x-go" id="aGo" style="margin-top:0"><span class="x-spin" aria-hidden="true"></span><span id="aGoT">Sign in</span></button>
+              </form>
+              <div class="x-linkrow"><button class="x-link" id="aForgot" type="button">Forgot password?</button><button class="x-link" id="aMode" type="button">New here? Create an account</button></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -702,13 +771,16 @@
           <div class="x-sec"><h3>Your message</h3><div class="x-msg">${highlight(t, r.rng)}</div></div>
           <div class="x-sec"><h3>What to do now</h3><ol class="x-steps">${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol></div>
           <div class="x-sec x-acts">
-            ${r.v === "safe" ? "" : `<a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(summary)}">${ic("share")}Warn my family</a>`}
+            <div id="famWarn" hidden></div>
+            ${r.v === "safe" ? "" : `<a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(summary)}">${ic("share")}Share warning on WhatsApp</a>`}
             <button class="x-btn" id="copy">${ic("copy")}Copy summary</button>
             <button class="x-btn" id="again">${ic("refresh")}Sniff another</button>
           </div></div>`;
         $("#copy").onclick = copy;
         $("#again").onclick = () => { $("#out").innerHTML = ""; $("#msg").value = ""; window.scrollTo({ top: 0, behavior: "smooth" }); $("#msg").focus(); };
+        document.dispatchEvent(new CustomEvent("sniff:result", { detail: { id: ++checkId, v: r.v, type: r.type || "", sum: r.sum || (r.flags[0] ? r.flags[0][1] : ""), text: t } }));
       }
+      let checkId = 0;
       function copy() {
         const done = () => toast("Summary copied");
         if (navigator.clipboard && isSecureContext) return navigator.clipboard.writeText(summary).then(done, fallback);
@@ -727,10 +799,11 @@
         document.querySelectorAll("[data-go]").forEach((x) => x.setAttribute("aria-selected", x.dataset.go === n));
         document.querySelectorAll("[data-tab]").forEach((s) => (s.hidden = s.dataset.tab !== n));
         $("#wm").textContent = n === "pro" ? " pro" : "";
+        if (n === "family") $('[data-go="family"]').classList.remove("x-has-dot");
         window.scrollTo(0, 0);
       };
       document.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => tab(b.dataset.go)));
-      $("#toPro").onclick = () => tab("pro");
+      $("#toPro").onclick = () => { tab("pro"); const e = $("#proEmail"); e && e.focus({ preventScroll: true }); };
       $("#reset").onclick = () => { left = 15; count(); toast("Free checks reset (demo)"); };
       count();
 
@@ -780,50 +853,447 @@
       }
       newGame();
 
-      // Family Shield
-      const REL = ["Mum", "Dad", "Grandparent", "Partner", "Sibling", "Child", "Friend", "Other"];
-      const code = () => Array.from({ length: 4 }, () => "abcdefghjkmnpqrstuvwxyz23456789"[(Math.random() * 31) | 0]).join("");
-      let fam = [], fOpen = null;
-      function drawFam() {
-        $("#fcount").textContent = `${fam.length} of 6`;
-        const slots = fam.length < 6 ? ["Mum", "Dad"].filter((r) => !fam.some((m) => m.rel === r)).concat("someone").slice(0, 6 - fam.length) : [];
-        $("#fam").innerHTML = fam.map((m) => `<div class="x-card x-mem"><div class="x-who"><span class="x-av">${esc(m.name[0].toUpperCase())}</span><div><b>${esc(m.name)}</b><small>${m.rel}</small></div><span class="x-tag">Invite pending</span></div>
-            <a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent("I added you to Sniff Family so scammers can't fool us. Tap to join: sniff.app/f/" + m.code)}">${ic("message")}Send invite on WhatsApp</a></div>`).join("")
-          + slots.map((s) => s === fOpen
-            ? `<form class="x-card x-form" id="fform"><input class="x-in" id="fname" required maxlength="24" placeholder="Their name" aria-label="Name" />
-                <select class="x-in" id="frel" aria-label="Relation">${REL.map((r) => `<option${r === (s === "someone" ? "Grandparent" : s) ? " selected" : ""}>${r}</option>`).join("")}</select>
-                <div class="x-two"><button type="button" class="x-btn" id="fcancel">Cancel</button><button class="x-btn x-btn--wa">Add</button></div></form>`
-            : `<button class="x-slot" data-s="${s}">${ic("users")}Add ${s}</button>`).join("");
-        document.querySelectorAll(".x-slot").forEach((b) => (b.onclick = () => { fOpen = b.dataset.s; drawFam(); $("#fname").focus(); }));
-        if ($("#fform")) {
-          $("#fcancel").onclick = () => { fOpen = null; drawFam(); };
-          $("#fform").onsubmit = (e) => {
-            e.preventDefault();
-            const name = $("#fname").value.trim();
-            if (!name) return $("#fname").focus();
-            fam.push({ name, rel: $("#frel").value, code: code() }); fOpen = null; drawFam(); toast(`${name} added — send the invite`);
-          };
-        }
-      }
-      drawFam();
-
-      // Pro: currency + early-access sheet
-      $("#cur").onclick = (e) => {
-        const b = e.target.closest("button"); if (!b) return;
-        document.querySelectorAll("#cur button").forEach((x) => x.setAttribute("aria-pressed", x === b));
-        document.querySelectorAll("[data-p]").forEach((el) => (el.textContent = el.dataset.p.split("|")[b.dataset.c]));
+      // Storage may be unavailable (private mode, blocked cookies)
+      const store = {
+        get: (k) => { try { return localStorage.getItem(k); } catch (_) { return null; } },
+        set: (k, v) => { try { localStorage.setItem(k, v); } catch (_) {} },
+        del: (k) => { try { localStorage.removeItem(k); } catch (_) {} },
       };
+
+      // Sheets
       let lastFocus;
-      const closeSheet = () => { $("#sheet").hidden = true; lastFocus && lastFocus.focus(); };
-      document.querySelectorAll("[data-sheet]").forEach((b) => (b.onclick = () => {
-        lastFocus = b;
-        $("#sheetSub").textContent = b.dataset.sheet === "Sniff API" ? "Leave your work email and our team will reach out about the Sniff API." : `${b.dataset.sheet} isn't live yet — leave your email and you'll be first in.`;
-        $("#sheetF").hidden = false; $("#sheetOk").hidden = true; $("#email").value = "";
-        $("#sheet").hidden = false; $("#email").focus();
-      }));
-      $("#sheetF").onsubmit = (e) => { e.preventDefault(); $("#sheetF").hidden = true; $("#sheetOk").hidden = false; $("#sheetX").focus(); };
-      $("#sheetBg").onclick = $("#sheetX").onclick = closeSheet;
-      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#sheet").hidden) closeSheet(); });
+      const openSheet = (el, focusSel) => {
+        lastFocus = document.activeElement; el.hidden = false;
+        const f = (focusSel && el.querySelector(focusSel)) || el.querySelector("input:not([hidden]),button.x-btn,.x-x");
+        f && f.focus();
+      };
+      const closeSheet = (el) => { el.hidden = true; lastFocus && lastFocus.focus && lastFocus.focus(); };
+      document.querySelectorAll("[data-sheet]").forEach((b) => (b.onclick = () => openSheet($("#sheet"), "input")));
+      $("#sheetBg").onclick = $("#sheetX").onclick = () => closeSheet($("#sheet"));
+      document.querySelectorAll("#auth [data-close]").forEach((b) => (b.onclick = () => closeSheet($("#auth"))));
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (!$("#acctMenu").hidden) { $("#acctMenu").hidden = true; $("#acct").focus(); return; }
+        ["#auth", "#sheet"].forEach((s) => { if (!$(s).hidden) closeSheet($(s)); });
+      });
+
+      // Early access: POST {email} to /api/waitlist, remembered once it succeeds
+      const WL_OK = "You're on the list. Check your inbox — we'll email you the day Pro launches.";
+      const WL_AGAIN = "You're already on the list.";
+      const WL_FAIL = "Couldn't sign you up right now. Try again in a minute.";
+      function wlDone(form, msg) {
+        const d = document.createElement("div");
+        d.className = "x-wl-done"; d.setAttribute("role", "status");
+        d.innerHTML = `<span class="x-ok">${ic("check")}</span><p>${esc(msg)}</p>`;
+        form.replaceWith(d);
+      }
+      function wireWL(form) {
+        const saved = store.get("sniff_waitlist");
+        if (saved) return wlDone(form, saved === "already" ? WL_AGAIN : WL_OK);
+        const inp = form.querySelector("input"), btn = form.querySelector("button"), err = form.querySelector(".x-err");
+        form.onsubmit = async (e) => {
+          e.preventDefault();
+          const email = inp.value.trim();
+          if (!email) { err.textContent = "That email doesn't look right."; return inp.focus(); }
+          err.textContent = ""; btn.disabled = true; btn.classList.add("is-busy"); form.setAttribute("aria-busy", "true");
+          try {
+            const res = await fetch("/api/waitlist", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email }) });
+            if (res.ok) {
+              let d = {};
+              try { d = (await res.json()) || {}; } catch (_) {}
+              store.set("sniff_waitlist", d.already ? "already" : "ok");
+              document.querySelectorAll("form[data-wl]").forEach((f) => wlDone(f, d.already ? WL_AGAIN : WL_OK));
+              return;
+            }
+            err.textContent = res.status === 400 ? "That email doesn't look right." : WL_FAIL;
+          } catch (_) { err.textContent = WL_FAIL; }
+          btn.disabled = false; btn.classList.remove("is-busy"); form.removeAttribute("aria-busy");
+        };
+      }
+      document.querySelectorAll("form[data-wl]").forEach(wireWL);
+
+      // Account chip and menu; the Firebase module fills in the rest
+      const acct = { state: "load", user: null, signOut: null };
+      const initials = (n) => (n || "?").trim().split(/\s+/).slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "?";
+      const avatar = (name, photo) => photo ? `<img src="${esc(photo)}" alt="" referrerpolicy="no-referrer" onerror="this.replaceWith(document.createTextNode('${esc(initials(name)).replace(/'/g, "")}'))">` : esc(initials(name));
+      function setChip(u) {
+        acct.user = u;
+        const b = $("#acct");
+        b.classList.toggle("is-in", !!u);
+        b.innerHTML = u ? avatar(u.name, u.photo) : ic("user");
+        b.setAttribute("aria-label", u ? `Account: ${u.name}` : "Sign in");
+        $("#menuName").textContent = u ? u.name : ""; $("#menuMail").textContent = u ? u.email || "" : "";
+        if (!u) $("#acctMenu").hidden = true;
+      }
+      function authView(state) {
+        acct.state = state;
+        $("#authLoad").hidden = state !== "load"; $("#authOff").hidden = state !== "off"; $("#authOn").hidden = state !== "on";
+      }
+      const openAuth = (sub) => { $("#authSub").textContent = sub || "Sign in to start Family Shield and warn each other about scams."; openSheet($("#auth"), acct.state === "on" ? "#gBtn" : ".x-x"); };
+      $("#acct").onclick = (e) => {
+        e.stopPropagation();
+        if (acct.user) { const m = $("#acctMenu"); m.hidden = !m.hidden; if (!m.hidden) $("#signOut").focus(); }
+        else openAuth();
+      };
+      $("#signOut").onclick = () => { $("#acctMenu").hidden = true; acct.signOut && acct.signOut(); };
+      document.addEventListener("click", (e) => { const m = $("#acctMenu"); if (!m.hidden && !m.contains(e.target)) m.hidden = true; });
+
+      // An invite link (?join=CODE) is remembered and opens the Family tab
+      const JOIN_RE = /^[ABCDEFGHJKMNPQRSTUVWXYZ23456789]{6}$/;
+      let pendingJoin = store.get("sniff_join");
+      try {
+        const p = new URLSearchParams(location.search);
+        if (p.has("join")) {
+          const j = (p.get("join") || "").trim().toUpperCase();
+          if (JOIN_RE.test(j)) { pendingJoin = j; store.set("sniff_join", j); }
+          p.delete("join");
+          history.replaceState(null, "", location.pathname + (p.toString() ? "?" + p : "") + location.hash);
+          tab("family");
+        }
+      } catch (_) {}
+
+      function accountsOff() {
+        authView("off"); setChip(null);
+        $("#famBox").innerHTML = `<div class="x-card x-calm"><span class="x-ico">${ic("lock")}</span><p class="x-note"><b>Accounts are switched off on this preview.</b> Checking messages and Spot It still work.</p></div>`;
+        const w = $("#famWarn"); if (w) w.hidden = true;
+      }
+
+      window.SniffUI = {
+        $, ic, esc, toast, tab, openAuth, closeSheet, setChip, authView, accountsOff, avatar, store, acct, JOIN_RE,
+        getJoin: () => pendingJoin,
+        clearJoin: () => { pendingJoin = null; store.del("sniff_join"); },
+        badge: () => { if ($('[data-tab="family"]').hidden) $('[data-go="family"]').classList.add("x-has-dot"); },
+      };
+    </script>
+    <script nomodule>window.SniffUI && window.SniffUI.accountsOff();</script>
+    <script type="module">
+      const UI = window.SniffUI, { $, ic, esc } = UI;
+      const SDK = "https://www.gstatic.com/firebasejs/10.12.5/";
+      const CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+      let A, F, auth, db, user = null, prof = {}, profLoaded = false, fid = null, fam = null, members = [], alerts = [];
+      let unsubs = [], unsubUser = null, firstAlerts = true, lastRes = null, prompted = false, leaving = false;
+      const warned = new Map();
+      const dispName = (u) => (u && (u.displayName || (u.email ? u.email.split("@")[0] : ""))) || "Someone";
+
+      async function boot() {
+        let cfg = null;
+        try { const r = await fetch("/api/config", { cache: "no-store" }); if (r.ok) cfg = ((await r.json()) || {}).firebase || null; } catch (_) {}
+        if (!cfg) return UI.accountsOff();
+        const [App, Auth, Fs] = await Promise.all([import(SDK + "firebase-app.js"), import(SDK + "firebase-auth.js"), import(SDK + "firebase-firestore.js")]);
+        A = Auth; F = Fs;
+        const app = App.initializeApp(cfg);
+        auth = A.getAuth(app); db = F.getFirestore(app);
+        UI.authView("on");
+        UI.acct.signOut = () => A.signOut(auth).then(() => UI.toast("Signed out"));
+        wireAuth();
+        A.getRedirectResult(auth).catch((e) => { UI.openAuth(); $("#authErr").textContent = authMsg(e); });
+        A.onAuthStateChanged(auth, onUser);
+        setInterval(paintAlerts, 60000);
+      }
+      boot().catch((e) => { console.warn("Accounts unavailable", e); UI.accountsOff(); });
+
+      // ---------- Sign in ----------
+      function authMsg(e) {
+        const c = (e && e.code) || "";
+        if (/wrong-password|invalid-credential|user-not-found|invalid-login-credentials/.test(c)) return "That email and password don't match. Try again, or reset your password.";
+        if (c === "auth/email-already-in-use") return "There's already an account with that email. Sign in instead.";
+        if (c === "auth/weak-password") return "Pick a longer password — at least 6 characters.";
+        if (/popup-closed-by-user|cancelled-popup-request|user-cancelled/.test(c)) return "The Google window closed before you finished. Try again when you're ready.";
+        if (c === "auth/invalid-email" || c === "auth/missing-email") return "That email doesn't look right.";
+        if (c === "auth/missing-password") return "Enter your password.";
+        if (c === "auth/too-many-requests") return "Too many tries. Wait a minute and try again.";
+        if (c === "auth/network-request-failed") return "No connection. Check your internet and try again.";
+        if (c === "auth/unauthorized-domain") return "Sign-in isn't set up for this address yet.";
+        return "Couldn't sign you in right now. Try again in a minute.";
+      }
+      function wireAuth() {
+        let mode = "in";
+        const err = $("#authErr"), note = $("#authNote"), go = $("#aGo");
+        const setMode = (m) => {
+          mode = m; err.textContent = ""; note.textContent = "";
+          $("#aName").hidden = m !== "up"; $("#aForgot").hidden = m === "up";
+          $("#aPass").autocomplete = m === "up" ? "new-password" : "current-password";
+          $("#aGoT").textContent = m === "up" ? "Create account" : "Sign in";
+          $("#aMode").textContent = m === "up" ? "Have an account? Sign in" : "New here? Create an account";
+        };
+        const busy = (on) => { go.disabled = on; go.classList.toggle("is-busy", on); $("#gBtn").disabled = on; };
+        $("#aMode").onclick = () => setMode(mode === "in" ? "up" : "in");
+        $("#gBtn").onclick = async () => {
+          err.textContent = ""; note.textContent = "";
+          const p = new A.GoogleAuthProvider();
+          busy(true);
+          try { await A.signInWithPopup(auth, p); }
+          catch (e) {
+            if (e.code === "auth/popup-blocked" || e.code === "auth/operation-not-supported-in-this-environment") {
+              try { await A.signInWithRedirect(auth, p); return; } catch (e2) { err.textContent = authMsg(e2); }
+            } else err.textContent = authMsg(e);
+          }
+          busy(false);
+        };
+        $("#authF").onsubmit = async (e) => {
+          e.preventDefault(); err.textContent = ""; note.textContent = "";
+          const email = $("#aEmail").value.trim(), pass = $("#aPass").value, name = $("#aName").value.trim();
+          if (!email) { err.textContent = "That email doesn't look right."; return $("#aEmail").focus(); }
+          if (!pass) { err.textContent = "Enter your password."; return $("#aPass").focus(); }
+          busy(true);
+          try {
+            if (mode === "up") {
+              const cred = await A.createUserWithEmailAndPassword(auth, email, pass);
+              if (name) {
+                await A.updateProfile(cred.user, { displayName: name });
+                UI.setChip({ name, email, photo: "" });
+                F.setDoc(F.doc(db, "users", cred.user.uid), { name, updatedAt: F.serverTimestamp() }, { merge: true }).catch(() => {});
+              }
+            } else await A.signInWithEmailAndPassword(auth, email, pass);
+            $("#aPass").value = "";
+          } catch (e2) { err.textContent = authMsg(e2); }
+          busy(false);
+        };
+        $("#aForgot").onclick = async () => {
+          err.textContent = ""; note.textContent = "";
+          const email = $("#aEmail").value.trim();
+          if (!email) { err.textContent = "Type your email above first, then tap Forgot password."; return $("#aEmail").focus(); }
+          try { await A.sendPasswordResetEmail(auth, email); note.textContent = "Check your inbox for a link to reset your password."; }
+          catch (e) { err.textContent = authMsg(e); }
+        };
+      }
+
+      async function onUser(u) {
+        user = u; profLoaded = false; prof = {};
+        unsubUser && unsubUser(); unsubUser = null; watchFam(null, true);
+        UI.setChip(u ? { name: dispName(u), email: u.email, photo: u.photoURL } : null);
+        if (!u) {
+          renderFam();
+          if (!prompted && UI.getJoin()) { prompted = true; UI.openAuth("Sign in to join the family you were invited to."); }
+          return;
+        }
+        prompted = true;
+        if (!$("#auth").hidden) UI.closeSheet($("#auth"));
+        renderFam();
+        try {
+          await F.setDoc(F.doc(db, "users", u.uid), { name: dispName(u), email: u.email || "", photoURL: u.photoURL || "", updatedAt: F.serverTimestamp() }, { merge: true });
+        } catch (e) { console.warn(e); }
+        if (user !== u) return;
+        unsubUser = F.onSnapshot(F.doc(db, "users", u.uid), (s) => {
+          prof = s.data() || {};
+          const nf = prof.familyId || null;
+          if (!profLoaded || nf !== fid) { profLoaded = true; watchFam(nf); }
+          else paintToggle();
+        }, (e) => { console.warn(e); profLoaded = true; watchFam(null); });
+      }
+
+      // ---------- Family data ----------
+      function watchFam(nf, quiet) {
+        unsubs.forEach((f) => f()); unsubs = [];
+        fid = nf; fam = null; members = []; alerts = []; firstAlerts = true; leaving = false;
+        if (quiet) return;
+        renderFam();
+        paintWarn(false);
+        if (!fid) return;
+        unsubs.push(F.onSnapshot(F.doc(db, "families", fid), (s) => { fam = s.exists() ? s.data() : { missing: true }; paintHead(); paintWarn(false); }, (e) => { console.warn(e); fam = { missing: true }; paintHead(); }));
+        unsubs.push(F.onSnapshot(F.collection(db, "families", fid, "members"), (s) => { members = s.docs.map((d) => ({ id: d.id, ...d.data() })); paintMembers(); }, (e) => console.warn(e)));
+        unsubs.push(F.onSnapshot(F.query(F.collection(db, "families", fid, "alerts"), F.orderBy("createdAt", "desc"), F.limit(30)), (s) => {
+          if (!firstAlerts) s.docChanges().forEach((c) => {
+            const d = c.doc.data();
+            if (c.type === "added" && user && d.byUid !== user.uid) { UI.toast(`${d.byName || "Someone"} flagged a scam`); UI.badge(); }
+          });
+          firstAlerts = false;
+          alerts = s.docs.map((d) => ({ id: d.id, ...d.data({ serverTimestamps: "estimate" }) }));
+          paintAlerts();
+        }, (e) => console.warn(e)));
+      }
+
+      const newCode = () => { const a = new Uint32Array(6); crypto.getRandomValues(a); return Array.from(a, (n) => CHARS[n % CHARS.length]).join(""); };
+      const memberDoc = (role) => ({ name: dispName(user), photoURL: user.photoURL || "", role, joinedAt: F.serverTimestamp() });
+
+      async function createFamily(name) {
+        let code = newCode();
+        for (let i = 0; i < 5; i++) {
+          try { if (!(await F.getDoc(F.doc(db, "codes", code))).exists()) break; } catch (_) { break; }
+          code = newCode();
+        }
+        const ref = await F.addDoc(F.collection(db, "families"), { name, ownerUid: user.uid, memberIds: [user.uid], code, createdAt: F.serverTimestamp() });
+        await F.setDoc(F.doc(db, "codes", code), { familyId: ref.id, ownerUid: user.uid });
+        await F.setDoc(F.doc(db, "families", ref.id, "members", user.uid), memberDoc("owner"));
+        await F.setDoc(F.doc(db, "users", user.uid), { familyId: ref.id }, { merge: true });
+      }
+      async function joinFamily(code) {
+        let snap;
+        try { snap = await F.getDoc(F.doc(db, "codes", code)); } catch (_) { throw new Error("nocode"); }
+        if (!snap.exists() || !snap.data().familyId) throw new Error("nocode");
+        const famId = snap.data().familyId;
+        await F.updateDoc(F.doc(db, "families", famId), { memberIds: F.arrayUnion(user.uid) });
+        await F.setDoc(F.doc(db, "families", famId, "members", user.uid), memberDoc("member"));
+        await F.setDoc(F.doc(db, "users", user.uid), { familyId: famId }, { merge: true });
+      }
+      async function leaveFamily() {
+        const id = fid, gone = fam && fam.missing;
+        if (!gone) {
+          await F.deleteDoc(F.doc(db, "families", id, "members", user.uid));
+          await F.updateDoc(F.doc(db, "families", id), { memberIds: F.arrayRemove(user.uid) });
+        }
+        await F.setDoc(F.doc(db, "users", user.uid), { familyId: null }, { merge: true });
+      }
+
+      // ---------- Family views ----------
+      const card = (html, cls = "") => `<div class="x-card ${cls}">${html}</div>`;
+      const busyBtn = (b, on) => { b.disabled = on; b.classList.toggle("is-busy", on); };
+      function renderFam() {
+        const box = $("#famBox"), join = UI.getJoin();
+        if (!user) {
+          box.innerHTML = card(`<ul class="x-pro" style="padding:0">
+              <li><span class="x-ico">${ic("users")}</span>Link up with a 6-letter family code</li>
+              <li><span class="x-ico">${ic("bell")}</span>When one of you flags a scam, everyone sees it</li>
+              <li><span class="x-ico">${ic("shield")}</span>Auto-alert warns them for you</li></ul>
+            ${join ? `<p class="x-note">You've been invited to a family with code <b>${esc(join)}</b>. Sign in to join.</p>` : ""}
+            <button class="x-go" id="fSignIn" style="margin-top:0">Sign in to start</button>`, "x-form");
+          $("#fSignIn").onclick = () => UI.openAuth(join ? "Sign in to join the family you were invited to." : "");
+          return;
+        }
+        if (!profLoaded) { box.innerHTML = card(`<p class="x-note" role="status">Loading your family…</p>`); return; }
+        if (!fid) {
+          const joinCard = `<form class="x-card x-form" id="fJoin" novalidate><p class="x-ct">${ic("link")}Join with a code</p>
+              <p class="x-note">${join ? "You were invited. Tap Join to link up." : "Got a code from someone in your family? Enter it here."}</p>
+              <input class="x-in x-codein" id="fCode" maxlength="6" placeholder="ABC234" aria-label="Family code" autocomplete="off" autocapitalize="characters" spellcheck="false" value="${esc(join || "")}" />
+              <p class="x-err" role="alert"></p>
+              <button class="x-btn x-btn--wa"><span class="x-spin" aria-hidden="true"></span><span>Join</span></button></form>`;
+          const createCard = `<form class="x-card x-form" id="fCreate" novalidate><p class="x-ct">${ic("plus")}Create a family</p>
+              <p class="x-note">Start a group, then send the code to the people you look out for.</p>
+              <input class="x-in" id="fName" maxlength="40" value="My family" aria-label="Family name" />
+              <p class="x-err" role="alert"></p>
+              <button class="x-go" style="margin-top:0"><span class="x-spin" aria-hidden="true"></span><span>Create family</span></button></form>`;
+          box.innerHTML = `<div class="x-fam">${join ? joinCard + createCard : createCard + joinCard}</div>`;
+          const fc = $("#fCreate"), fj = $("#fJoin");
+          fc.onsubmit = async (e) => {
+            e.preventDefault();
+            const b = fc.querySelector("button"), er = fc.querySelector(".x-err"), name = $("#fName").value.trim() || "My family";
+            er.textContent = ""; busyBtn(b, true);
+            try { await createFamily(name); UI.toast("Family created"); }
+            catch (x) { console.warn(x); er.textContent = "Couldn't create your family right now. Try again."; busyBtn(b, false); }
+          };
+          $("#fCode").oninput = (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 6); };
+          fj.onsubmit = async (e) => {
+            e.preventDefault();
+            const b = fj.querySelector("button"), er = fj.querySelector(".x-err"), code = $("#fCode").value.trim().toUpperCase();
+            er.textContent = "";
+            if (!UI.JOIN_RE.test(code)) { er.textContent = "No family with that code"; return $("#fCode").focus(); }
+            busyBtn(b, true);
+            try { await joinFamily(code); UI.clearJoin(); UI.toast("You joined the family"); }
+            catch (x) { console.warn(x); er.textContent = x.message === "nocode" ? "No family with that code" : "Couldn't join right now. Try again."; busyBtn(b, false); }
+          };
+          if (join) $("#fCode").focus({ preventScroll: true });
+          return;
+        }
+        if (join) { UI.clearJoin(); UI.toast("You're already in a family. Leave it first to join another."); }
+        box.innerHTML = `<div class="x-row" style="margin-top:0"><h2 class="x-h2" id="fTitle">Your family</h2><span class="x-n" id="fCount"></span></div>
+          <div class="x-card x-form" id="fInvite" hidden><p class="x-ct">${ic("users")}Invite with this code</p><p class="x-code" id="fCodeBig"></p>
+            <div class="x-acts"><button class="x-btn" id="fCopy">${ic("copy")}Copy invite link</button><a class="x-btn x-btn--wa" id="fWa" target="_blank" rel="noopener">${ic("message")}Share on WhatsApp</a></div></div>
+          <div class="x-card x-switchrow"><span id="fAutoL">Auto-alert my family when Sniff finds a scam</span><button class="x-switch" id="fAuto" role="switch" aria-labelledby="fAutoL" aria-checked="false"></button></div>
+          <h2 class="x-h2">Members</h2><div class="x-card x-list" id="fMembers"><p class="x-note">Loading…</p></div>
+          <div class="x-row"><h2 class="x-h2">Alerts</h2><span class="x-n">Live</span></div><div class="x-fam" id="fAlerts"><div class="x-card"><p class="x-note">Loading…</p></div></div>
+          <div id="fLeave" style="margin-top:24px;display:grid"></div>`;
+        $("#fAuto").onclick = async () => {
+          const on = !(prof.autoAlert === true);
+          $("#fAuto").setAttribute("aria-checked", on);
+          try { await F.setDoc(F.doc(db, "users", user.uid), { autoAlert: on }, { merge: true }); UI.toast(on ? "Auto-alert is on" : "Auto-alert is off"); }
+          catch (e) { $("#fAuto").setAttribute("aria-checked", !on); UI.toast("Couldn't change that. Try again."); }
+        };
+        $("#fCopy").onclick = () => {
+          const link = inviteLink();
+          if (!link) return;
+          const done = () => UI.toast("Invite link copied");
+          const fb = () => { const a = document.createElement("textarea"); a.value = link; document.body.appendChild(a); a.select(); document.execCommand("copy"); a.remove(); done(); };
+          navigator.clipboard && isSecureContext ? navigator.clipboard.writeText(link).then(done, fb) : fb();
+        };
+        paintToggle(); paintLeave();
+      }
+      const inviteLink = () => (fam && fam.code ? location.origin + "/?join=" + fam.code : "");
+      function paintHead() {
+        if (!$("#fTitle")) return;
+        if (fam && fam.missing) { $("#fTitle").textContent = "Family not found"; $("#fCount").textContent = ""; $("#fInvite").hidden = true; paintLeave(); return; }
+        const n = (fam.memberIds || []).length;
+        $("#fTitle").textContent = fam.name || "Your family";
+        $("#fCount").textContent = `${n} ${n === 1 ? "member" : "members"}`;
+        $("#fInvite").hidden = !fam.code;
+        $("#fCodeBig").textContent = fam.code || "";
+        $("#fWa").href = "https://wa.me/?text=" + encodeURIComponent("Join my family on Sniff so we can warn each other about scams: " + inviteLink());
+        paintLeave();
+      }
+      function paintToggle() { const t = $("#fAuto"); t && t.setAttribute("aria-checked", prof.autoAlert === true); }
+      function paintMembers() {
+        const el = $("#fMembers"); if (!el) return;
+        const list = members.slice().sort((a, b) => (a.role === "owner" ? -1 : b.role === "owner" ? 1 : 0) || (a.name || "").localeCompare(b.name || ""));
+        el.innerHTML = list.length ? list.map((m) => `<div class="x-who"><span class="x-av">${UI.avatar(m.name, m.photoURL)}</span><div><b>${esc(m.name || "Someone")}</b><small>${m.id === user.uid ? "You" : "Member"}</small></div>${m.role === "owner" ? `<span class="x-tag">Owner</span>` : ""}</div>`).join("")
+          : `<p class="x-note">No one here yet.</p>`;
+      }
+      function ago(ts) {
+        const d = ts && ts.toDate ? ts.toDate() : null; if (!d) return "just now";
+        const s = (Date.now() - d.getTime()) / 1000;
+        if (s < 60) return "just now";
+        if (s < 3600) return `${Math.floor(s / 60)} min ago`;
+        if (s < 86400) return `${Math.floor(s / 3600)} h ago`;
+        if (s < 604800) { const n = Math.floor(s / 86400); return n === 1 ? "yesterday" : `${n} days ago`; }
+        return d.toLocaleDateString(undefined, { day: "numeric", month: "short" });
+      }
+      function paintAlerts() {
+        const el = $("#fAlerts"); if (!el) return;
+        if (!alerts.length) { el.innerHTML = `<div class="x-card"><p class="x-note">No alerts yet. When anyone in the family flags a scam, it shows up here.</p></div>`; return; }
+        el.innerHTML = alerts.map((a) => {
+          const scam = a.verdict === "SCAM";
+          return `<article class="x-card x-alert" style="--c:${scam ? "var(--scam)" : "var(--sus)"}">
+            <span class="x-vp">${ic(scam ? "octagon" : "alert")}${scam ? "SCAM" : "SUSPICIOUS"}</span>
+            <small>${esc(user && a.byUid === user.uid ? "You" : a.byName || "Someone")} flagged this · ${ago(a.createdAt)}</small>
+            ${a.scamType ? `<b>${esc(a.scamType)}</b>` : ""}${a.summary ? `<p>${esc(a.summary)}</p>` : ""}
+            ${a.snippet ? `<div class="x-msg">${esc(a.snippet)}</div>` : ""}</article>`;
+        }).join("");
+      }
+      function paintLeave() {
+        const el = $("#fLeave"); if (!el) return;
+        const owner = fam && !fam.missing && fam.ownerUid === user.uid;
+        if (!leaving) {
+          el.innerHTML = `<button class="x-link" id="fLeaveBtn">Leave family</button><p class="x-err" role="alert"></p>`;
+          $("#fLeaveBtn").onclick = () => { if (owner) { leaving = true; paintLeave(); } else doLeave(); };
+          return;
+        }
+        el.innerHTML = card(`<p class="x-note"><b>You created this family.</b> If you leave, everyone else stays in it and the invite code keeps working.</p>
+          <div class="x-two"><button class="x-btn" id="fLeaveNo">Stay</button><button class="x-btn x-btn--wa" id="fLeaveYes"><span class="x-spin" aria-hidden="true"></span><span>Leave family</span></button></div><p class="x-err" role="alert"></p>`, "x-form");
+        $("#fLeaveNo").onclick = () => { leaving = false; paintLeave(); };
+        $("#fLeaveYes").onclick = doLeave;
+      }
+      async function doLeave() {
+        const el = $("#fLeave"), b = $("#fLeaveYes") || $("#fLeaveBtn");
+        b.disabled = true; b.classList.add("is-busy");
+        try { await leaveFamily(); UI.toast("You left the family"); }
+        catch (e) { console.warn(e); b.disabled = false; b.classList.remove("is-busy"); el.querySelector(".x-err").textContent = "Couldn't leave right now. Try again."; }
+      }
+
+      // ---------- Warn the family from a result ----------
+      document.addEventListener("sniff:result", (e) => { lastRes = e.detail; paintWarn(true); });
+      function paintWarn(fresh) {
+        const slot = document.getElementById("famWarn");
+        if (!slot || !lastRes) return;
+        if (!(user && fid && fam && !fam.missing && lastRes.v !== "safe")) { slot.hidden = true; slot.innerHTML = ""; return; }
+        slot.hidden = false;
+        const id = lastRes.id, w = warned.get(id);
+        if (w === "busy") { slot.innerHTML = `<button class="x-btn is-busy" disabled><span class="x-spin" aria-hidden="true"></span>Warning your family…</button>`; return; }
+        if (w) { slot.innerHTML = `<button class="x-btn" disabled>${ic("check")}${w === "auto" ? "Your family was warned" : "Family warned"}</button>`; return; }
+        if (fresh && prof.autoAlert === true) return postAlert("auto");
+        slot.innerHTML = `<button class="x-btn x-btn--wa" id="famWarnBtn">${ic("bell")}Warn my family</button>`;
+        $("#famWarnBtn").onclick = () => postAlert("manual");
+      }
+      async function postAlert(kind) {
+        const r = lastRes, id = r.id;
+        if (warned.has(id)) return;
+        warned.set(id, "busy"); paintWarn(false);
+        try {
+          await F.addDoc(F.collection(db, "families", fid, "alerts"), {
+            byUid: user.uid, byName: dispName(user), verdict: r.v === "scam" ? "SCAM" : "SUSPICIOUS",
+            scamType: r.type || "", summary: r.sum || "", snippet: r.text.slice(0, 160), createdAt: F.serverTimestamp(),
+          });
+          warned.set(id, kind);
+        } catch (e) { console.warn(e); warned.delete(id); UI.toast("Couldn't warn your family. Try again."); }
+        if (lastRes && lastRes.id === id) paintWarn(false);
+      }
     </script>
   </body>
 </html>
