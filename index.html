@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Sniff — Sniff it before you trust it.</title>
+    <link rel="stylesheet" href="hark.css" />
+    <style>
+      body{background:#FAF7F2;color:#141414;margin:0}
+      .x-app{--bg:#FAF7F2;--ink:#141414;--acc:#FF5A1F;--safe:#12B76A;--sus:#F5A524;--scam:#E5383B;--mute:#6b6660;--line:#e8e2d8;
+        font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:var(--bg);
+        max-width:440px;margin:0 auto;min-height:100vh;padding:calc(env(safe-area-inset-top) + 14px) 18px calc(env(safe-area-inset-bottom) + 92px);box-sizing:border-box;-webkit-font-smoothing:antialiased}
+      .x-app *{box-sizing:border-box}
+      .x-top{display:flex;align-items:center;gap:10px;margin-bottom:22px}
+      .x-top b{font-size:22px;letter-spacing:-.04em}
+      .x-top span{font-size:12px;color:var(--mute);margin-left:auto}
+      .x-h1{font-size:30px;line-height:1.05;letter-spacing:-.045em;font-weight:800;margin:0 0 10px}
+      .x-sub{font-size:15px;line-height:1.4;color:var(--mute);margin:0 0 18px}
+      .x-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px}
+      .x-ta{width:100%;min-height:130px;border:0;resize:vertical;font:inherit;font-size:16px;line-height:1.4;color:var(--ink);background:transparent;outline:none}
+      .x-chips{display:flex;gap:8px;overflow-x:auto;margin:12px -18px 0;padding:0 18px 4px;scrollbar-width:none}
+      .x-chip{flex:none;border:1px solid var(--line);background:#fff;border-radius:999px;padding:0 14px;min-height:44px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer}
+      .x-go{width:100%;min-height:58px;margin-top:14px;border:0;border-radius:20px;background:var(--acc);color:#fff;font:inherit;font-size:19px;font-weight:800;letter-spacing:-.02em;cursor:pointer;box-shadow:0 8px 20px -8px rgba(255,90,31,.7)}
+      .x-go:disabled{opacity:.45;box-shadow:none;cursor:default}
+      .x-count{text-align:center;font-size:13px;color:var(--mute);margin:10px 0 0}
+      .x-count b{color:var(--ink)}
+      .x-load{display:flex;flex-direction:column;align-items:center;gap:12px;padding:34px 0;font-weight:700}
+      .x-load svg{animation:x-pulse .5s ease-in-out infinite alternate}
+      @keyframes x-pulse{to{transform:scale(1.25)}}
+      .x-res{margin-top:18px;border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--line)}
+      .x-band{padding:18px 16px;color:#fff;display:flex;align-items:center;gap:12px}
+      .x-band h2{margin:0;font-size:34px;font-weight:900;letter-spacing:-.04em;line-height:1}
+      .x-band p{margin:4px 0 0;font-size:14px;font-weight:600;opacity:.95}
+      .x-score{margin-left:auto;text-align:center;background:rgba(255,255,255,.22);border-radius:16px;padding:8px 12px;font-weight:900;font-size:26px;line-height:1}
+      .x-score small{display:block;font-size:11px;font-weight:600;opacity:.9}
+      .x-sec{padding:16px;border-top:1px solid var(--line)}
+      .x-sec h3{margin:0 0 10px;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+      .x-flags{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+      .x-flags li{font-size:14px;line-height:1.4;padding-left:16px;position:relative}
+      .x-flags li:before{content:"";position:absolute;left:0;top:6px;width:8px;height:8px;border-radius:50%;background:var(--c)}
+      .x-flags b{display:block}
+      .x-msg{font-size:14px;line-height:1.5;background:var(--bg);border-radius:14px;padding:12px;white-space:pre-wrap;word-break:break-word}
+      .x-msg mark{background:color-mix(in srgb,var(--c) 28%,transparent);color:inherit;border-radius:4px;padding:0 2px;font-weight:600}
+      .x-steps{margin:0;padding-left:20px;font-size:14px;line-height:1.45;display:grid;gap:6px}
+      .x-acts{display:grid;gap:8px}
+      .x-btn{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:16px;border:1px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer}
+      .x-btn--wa{background:var(--ink);color:#fff;border-color:var(--ink)}
+      .x-h2{font-size:19px;font-weight:800;letter-spacing:-.03em;margin:28px 0 12px}
+      .x-trend{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+      .x-trend button{text-align:left;border:1px solid var(--line);background:#fff;border-radius:20px;padding:14px;font:inherit;color:var(--ink);cursor:pointer;min-height:96px}
+      .x-trend b{display:block;font-size:15px;letter-spacing:-.02em;margin:6px 0 4px}
+      .x-trend small{font-size:12px;color:var(--mute)}
+      .x-trend i{font-style:normal;font-size:20px}
+      .x-ph{text-align:center;padding:40px 20px}
+      .x-ph h2{font-size:26px;letter-spacing:-.04em;margin:14px 0 6px}
+      .x-ph p{color:var(--mute);margin:0}
+      .x-ph .x-big{font-size:64px;font-weight:900;color:var(--ink);letter-spacing:-.05em;line-height:1;margin:14px 0 0}
+      .x-ph .x-streak{display:inline-block;margin:14px 0 20px;background:#FFF1EA;color:var(--ink);border-radius:999px;padding:8px 14px;font-weight:700;font-size:14px}
+      .x-gtop{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px}
+      .x-dots{display:flex;gap:5px}
+      .x-dots i{width:20px;height:6px;border-radius:3px;background:var(--line)}
+      .x-dots i.now{background:var(--ink)}.x-dots i.ok{background:var(--safe)}.x-dots i.no{background:var(--scam)}
+      .x-from{margin:0 0 8px;font-size:14px;font-weight:700}
+      .x-from small{font-weight:500;color:var(--mute);font-size:13px}
+      .x-vote{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+      .x-vote button{min-height:76px;border:0;border-radius:20px;color:#fff;font:inherit;font-size:22px;font-weight:900;letter-spacing:-.02em;cursor:pointer}
+      .x-vote [data-a=scam]{background:var(--scam)}.x-vote [data-a=legit]{background:var(--safe)}
+      .x-why{margin:0;font-size:15px;line-height:1.45}
+      .x-row{display:flex;align-items:center;justify-content:space-between;margin:28px 0 12px}
+      .x-row .x-h2{margin:0}
+      .x-n{font-size:13px;font-weight:700;color:var(--mute)}
+      .x-fam{display:grid;gap:10px}
+      .x-slot{width:100%;min-height:60px;border:1.5px dashed #cfc6b8;border-radius:20px;background:transparent;padding:0 18px;text-align:left;font:inherit;font-size:16px;font-weight:700;color:var(--ink);cursor:pointer}
+      .x-mem,.x-form,.x-up,.x-plan{display:grid;gap:12px}
+      .x-who{display:flex;align-items:center;gap:12px}
+      .x-who b{display:block;font-size:16px}
+      .x-who small{font-size:13px;color:var(--mute)}
+      .x-av{flex:none;width:44px;height:44px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px}
+      .x-tag{margin-left:auto;white-space:nowrap;font-size:12px;font-weight:700;background:#FEF3DC;color:#7a4b00;border-radius:999px;padding:5px 10px}
+      .x-in{width:100%;min-height:48px;border:1px solid var(--line);border-radius:14px;padding:0 14px;font:inherit;font-size:16px;color:var(--ink);background:var(--bg)}
+      .x-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+      .x-rep p{margin:0;font-size:15px;line-height:1.4}
+      .x-nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+      .x-nums div{background:var(--bg);border-radius:14px;padding:12px}
+      .x-nums b{display:block;font-size:30px;font-weight:900;letter-spacing:-.04em;line-height:1.1}
+      .x-nums small,.x-rep .x-note{font-size:13px;color:var(--mute)}
+      .x-seg{display:inline-flex;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px;margin-bottom:16px}
+      .x-seg button{min-width:56px;min-height:44px;border:0;border-radius:999px;background:none;font:inherit;font-size:16px;font-weight:800;color:var(--mute);cursor:pointer}
+      .x-seg [aria-pressed=true]{background:var(--ink);color:#fff}
+      .x-plans{display:grid;gap:14px}
+      .x-plan{position:relative}
+      .x-plan--hi{border:2px solid var(--acc);box-shadow:0 10px 26px -14px rgba(255,90,31,.6)}
+      .x-badge{position:absolute;top:-12px;right:16px;background:var(--ink);color:#fff;font-size:12px;font-weight:800;border-radius:999px;padding:4px 10px}
+      .x-plan h3,.x-up h3{margin:0;font-size:17px;font-weight:800;letter-spacing:-.02em}
+      .x-price{margin:0;font-size:34px;font-weight:900;letter-spacing:-.045em;line-height:1}
+      .x-price small{font-size:14px;font-weight:600;color:var(--mute);letter-spacing:0}
+      .x-ann,.x-up p{margin:0;font-size:14px;line-height:1.4;color:var(--mute)}
+      .x-save{background:#E3F7EC;color:#06603a;border-radius:999px;padding:2px 8px;font-weight:700;font-size:12px}
+      .x-feat{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:14px;line-height:1.35}
+      .x-feat li{position:relative;padding-left:22px}
+      .x-feat li:before{content:"✓";position:absolute;left:0;color:var(--safe);font-weight:900}
+      .x-plan .x-go,.x-up .x-go{margin-top:2px;min-height:52px;font-size:17px}
+      .x-api{display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
+      .x-api p{margin:0;flex:1;line-height:1.4}
+      .x-api b{color:var(--ink)}
+      .x-api .x-btn{flex:none;min-height:44px;padding:0 14px;font-size:14px}
+      .x-up{margin-top:14px;border-color:var(--acc)}
+      .x-link{justify-self:center;min-height:44px;border:0;background:none;font:inherit;font-size:14px;color:var(--mute);text-decoration:underline;cursor:pointer}
+      .x-sheet{position:fixed;inset:0;z-index:20;display:flex;align-items:flex-end;justify-content:center}
+      .x-sheet__bg{position:absolute;inset:0;background:rgba(20,20,20,.45);animation:x-fade .2s}
+      .x-sheet__box{position:relative;width:100%;max-width:440px;background:var(--bg);border-radius:24px 24px 0 0;padding:10px 18px calc(env(safe-area-inset-bottom) + 22px);animation:x-rise .25s ease-out}
+      .x-sheet h2{margin:0 0 6px;font-size:24px;font-weight:800;letter-spacing:-.04em}
+      .x-grab{width:40px;height:5px;border-radius:3px;background:var(--line);margin:0 auto 14px}
+      .x-x{position:absolute;top:6px;right:8px;width:44px;height:44px;border:0;background:none;font-size:22px;color:var(--mute);cursor:pointer}
+      .x-done{text-align:center;padding:16px 0 8px}
+      @keyframes x-rise{from{transform:translateY(100%)}}
+      @keyframes x-fade{from{opacity:0}}
+      @media (prefers-reduced-motion:reduce){.x-sheet__box,.x-sheet__bg,.x-load svg{animation:none}}
+      .x-tabs{position:fixed;left:50%;bottom:0;transform:translateX(-50%);width:100%;max-width:440px;display:grid;grid-template-columns:repeat(4,1fr);background:rgba(250,247,242,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line);padding:6px 8px calc(env(safe-area-inset-bottom) + 6px);z-index:9}
+      .x-tabs button{border:0;background:none;font:inherit;font-size:12px;font-weight:600;color:var(--mute);min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer}
+      .x-tabs button[aria-selected=true]{color:var(--ink);font-weight:800}
+      .x-tabs button[aria-selected=true] svg{stroke:var(--acc)}
+      .x-chip[aria-pressed=true],.x-trend button[aria-pressed=true]{border-color:var(--acc);box-shadow:inset 0 0 0 1px var(--acc)}
+      .x-tabs svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+      .x-toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 84px);transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:10}
+      .x-toast.on{opacity:1}
+      .x-ai{display:inline-block;margin-top:10px;border:1px solid var(--line);background:rgba(255,255,255,.6);border-radius:999px;padding:3px 10px;font-size:12px;font-weight:600;color:var(--mute)}
+      .x-band .x-sum{font-size:14px;font-weight:400;line-height:1.45;color:var(--mute);opacity:1}
+
+      /* ---- Airy glass restyle ---- */
+      :root{color-scheme:light}
+      html,body{background:#FBF6EF}
+      body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:#141414}
+      .x-bg{position:fixed;inset:-25%;z-index:-1;pointer-events:none;background:
+        radial-gradient(38% 32% at 22% 18%,rgba(255,210,180,.7),transparent 70%),
+        radial-gradient(40% 36% at 82% 22%,rgba(216,206,255,.55),transparent 70%),
+        radial-gradient(46% 40% at 72% 82%,rgba(196,226,255,.6),transparent 70%),
+        radial-gradient(42% 38% at 18% 78%,rgba(255,236,208,.85),transparent 70%),#FBF6EF;
+        animation:x-drift 48s ease-in-out infinite alternate;will-change:transform}
+      @keyframes x-drift{0%{transform:translate3d(0,0,0) rotate(0) scale(1)}50%{transform:translate3d(3%,-2%,0) rotate(5deg) scale(1.05)}100%{transform:translate3d(-3%,2%,0) rotate(-4deg) scale(1.02)}}
+      .x-app{--serif:"Instrument Serif",Georgia,"Times New Roman",serif;--glass:rgba(255,255,255,.7);--gline:rgba(255,255,255,.4);--shadow:0 1px 2px rgba(20,20,20,.03),0 18px 48px -24px rgba(70,50,30,.22);
+        --line:rgba(20,20,20,.08);--mute:#66615b;--safe:#3FA877;--sus:#D99A35;--scam:#D65A56;
+        background:transparent;font-family:inherit;padding:calc(env(safe-area-inset-top) + 20px) 20px calc(env(safe-area-inset-bottom) + 124px)}
+      .x-top{margin-bottom:36px}
+      .x-top svg{width:28px;height:28px}
+      .x-top b{font-family:var(--serif);font-size:30px;font-weight:400;letter-spacing:-.02em;line-height:1}
+      .x-top b em{font-style:italic;color:var(--mute)}
+      .x-h1{font-family:var(--serif);font-weight:400;font-size:42px;line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+      .x-h1 em,.x-h2 em{font-style:italic}
+      .x-sub{font-size:16px;line-height:1.5;margin:0 0 26px}
+      .x-h2{font-family:var(--serif);font-weight:400;font-size:26px;letter-spacing:-.01em;margin:44px 0 14px}
+      .x-row{margin:44px 0 14px}
+      .x-card,.x-res,.x-trend button,.x-chip,.x-seg,.x-sheet__box{background:var(--glass);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border:1px solid var(--gline);box-shadow:var(--shadow)}
+      .x-card{border-radius:26px;padding:20px}
+      .x-res{border-radius:28px;margin-top:24px}
+      .x-chips{gap:8px;margin-top:14px}
+      .x-chip{border-radius:999px;font-weight:500;box-shadow:none}
+      .x-chip[aria-pressed=true],.x-trend button[aria-pressed=true]{border-color:#141414;box-shadow:inset 0 0 0 1px #141414}
+      .x-go{border-radius:999px;background:#141414;min-height:56px;font-size:17px;font-weight:600;letter-spacing:-.01em;box-shadow:0 12px 28px -14px rgba(20,20,20,.55);transition:transform .15s var(--ease-out,ease)}
+      .x-go:active{transform:scale(.98)}
+      .x-go:disabled{opacity:.35}
+      .x-btn{border-radius:999px;background:var(--glass);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);border:1px solid rgba(20,20,20,.08);font-weight:600}
+      .x-btn:disabled{color:var(--mute);cursor:default}
+      .x-btn--wa{background:#141414;color:#fff;border-color:#141414}
+      .x-count{margin-top:12px}
+      .x-count b{font-weight:600}
+      .x-load{font-weight:500;color:var(--mute);padding:44px 0}
+      .x-trend{gap:12px}
+      .x-trend button{border-radius:24px;padding:16px;min-height:112px}
+      .x-trend b{font-weight:600}
+      .x-band{padding:22px 20px;color:var(--ink);align-items:flex-start;gap:16px}
+      .x-band h2{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.08em;line-height:1;padding:8px 12px;border-radius:999px;background:color-mix(in srgb,var(--c) 15%,#fff);color:color-mix(in srgb,var(--c) 60%,#141414)}
+      .x-band h2:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c)}
+      .x-band p.x-type{font-family:var(--serif);font-size:26px;font-weight:400;line-height:1.1;letter-spacing:-.01em;margin:12px 0 6px;opacity:1}
+      .x-ring{flex:none;margin-left:auto;position:relative;width:76px;height:76px;display:grid;place-items:center;text-align:center}
+      .x-ring svg{position:absolute;inset:0;transform:rotate(-90deg)}
+      .x-ring circle{fill:none;stroke-width:3}
+      .x-ring .t{stroke:rgba(20,20,20,.07)}
+      .x-ring .f{stroke:var(--c);stroke-linecap:round;transition:stroke-dasharray .8s ease-out}
+      .x-ring b{font-family:var(--serif);font-size:28px;font-weight:400;line-height:1;display:block}
+      .x-ring small{display:block;font-size:10px;color:var(--mute);margin-top:2px}
+      .x-sec{padding:18px 20px}
+      .x-sec h3{font-size:12px;font-weight:600;letter-spacing:.08em}
+      .x-flags{gap:12px}
+      .x-flags b{font-weight:600;margin-bottom:2px}
+      .x-flags li{color:var(--mute)}.x-flags li b{color:var(--ink)}
+      .x-msg{background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:18px;padding:14px}
+      .x-acts{gap:10px}
+      .x-vote{gap:12px;margin-top:16px}
+      .x-vote button{border-radius:28px;font-size:18px;font-weight:600;letter-spacing:.06em;border:1px solid var(--gline);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:var(--shadow)}
+      .x-vote [data-a=scam]{background:color-mix(in srgb,var(--scam) 16%,rgba(255,255,255,.75));color:color-mix(in srgb,var(--scam) 65%,#141414)}
+      .x-vote [data-a=legit]{background:color-mix(in srgb,var(--safe) 16%,rgba(255,255,255,.75));color:color-mix(in srgb,var(--safe) 60%,#141414)}
+      .x-gtop{font-weight:600}
+      .x-dots i{background:rgba(20,20,20,.1)}
+      .x-dots i.ok{background:var(--safe)}.x-dots i.no{background:var(--scam)}
+      .x-from{font-weight:600}
+      .x-ph{padding:44px 24px}
+      .x-ph .x-big{font-family:var(--serif);font-weight:400;font-size:84px;letter-spacing:-.03em}
+      .x-ph h2{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:-.01em}
+      .x-ph .x-streak{background:rgba(255,255,255,.7);border:1px solid var(--line);font-weight:500}
+      .x-slot{border:1px dashed rgba(20,20,20,.2);border-radius:26px;background:rgba(255,255,255,.35);font-weight:500}
+      .x-av{font-family:var(--serif);font-weight:400;font-size:22px}
+      .x-who b{font-weight:600}
+      .x-tag{font-weight:600;background:color-mix(in srgb,var(--sus) 15%,#fff);color:#7a4f12}
+      .x-in{border-radius:999px;padding:0 18px;background:rgba(255,255,255,.6);border:1px solid var(--line)}
+      .x-nums div{background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:20px;padding:14px}
+      .x-nums b{font-family:var(--serif);font-weight:400;font-size:40px;letter-spacing:-.02em}
+      .x-seg{padding:4px;margin-bottom:22px;box-shadow:none}
+      .x-seg button{font-weight:600}
+      .x-seg [aria-pressed=true]{background:#141414}
+      .x-plans{gap:16px}
+      .x-plan{gap:14px}
+      .x-plan--hi{border:1px solid rgba(20,20,20,.85);box-shadow:var(--shadow)}
+      .x-badge{font-weight:600;padding:5px 12px}
+      .x-plan h3,.x-up h3{font-weight:600;font-size:16px;letter-spacing:0}
+      .x-price{font-family:var(--serif);font-weight:400;font-size:48px;letter-spacing:-.02em}
+      .x-price small{font-family:system-ui,-apple-system,sans-serif;font-weight:500}
+      .x-save{font-weight:600;background:color-mix(in srgb,var(--safe) 15%,#fff);color:#245f43}
+      .x-feat li:before{font-weight:600;color:var(--safe)}
+      .x-api{border-top:1px solid var(--line);margin-top:32px;padding-top:20px}
+      .x-api b{font-weight:600}
+      .x-up{border:1px solid rgba(20,20,20,.85)}
+      .x-sheet__bg{background:rgba(30,25,20,.28);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+      .x-sheet__box{background:rgba(255,255,255,.82);border-radius:28px 28px 0 0;padding:12px 22px calc(env(safe-area-inset-bottom) + 26px)}
+      .x-sheet h2{font-family:var(--serif);font-weight:400;font-size:30px;letter-spacing:-.01em}
+      .x-grab{background:rgba(20,20,20,.12)}
+      .x-tabs{bottom:calc(env(safe-area-inset-bottom) + 14px);width:calc(100% - 32px);max-width:408px;padding:6px;border-radius:999px;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border:1px solid rgba(255,255,255,.5);box-shadow:0 18px 40px -18px rgba(70,50,30,.3)}
+      .x-tabs button{position:relative;border-radius:999px;font-weight:500;min-height:54px}
+      .x-tabs button[aria-selected=true]{font-weight:600;background:rgba(255,255,255,.8)}
+      .x-tabs button[aria-selected=true] svg{stroke:currentColor}
+      .x-tabs button[aria-selected=true]:after{content:"";position:absolute;top:7px;right:calc(50% - 16px);width:5px;height:5px;border-radius:50%;background:#FF5A1F}
+      .x-toast{bottom:calc(env(safe-area-inset-bottom) + 96px);background:rgba(20,20,20,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+      @media (prefers-reduced-motion:reduce){.x-bg{animation:none}.x-ring .f{transition:none}}
+      [hidden]{display:none!important}
+    </style>
+  </head>
+  <body>
+    <div class="x-bg" aria-hidden="true"></div>
+    <div class="x-app" id="top">
+      <svg width="0" height="0" style="position:absolute"><symbol id="logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="13" fill="#141414"/><ellipse cx="21" cy="22" rx="12" ry="9" fill="#FBF6EF"/><ellipse cx="16.5" cy="23" rx="2.4" ry="3.2" fill="#141414"/><ellipse cx="25.5" cy="23" rx="2.4" ry="3.2" fill="#141414"/><path d="M14 9q7-4 14 0" stroke="#FBF6EF" stroke-width="2.4" fill="none" stroke-linecap="round"/></symbol></svg>
+      <header class="x-top"><svg width="28" height="28" aria-hidden="true"><use href="#logo"/></svg><b>sniff<em id="wm"></em></b><span>Sniff it before you trust it.</span></header>
+
+      <main>
+        <section data-tab="sniff">
+          <h1 class="x-h1">Got a weird message? Paste it. <em>We'll sniff it.</em></h1>
+          <p class="x-sub">Texts, WhatsApp forwards, links, numbers. <span id="privNote">Free, instant — nothing leaves your phone.</span></p>
+          <div class="x-card"><textarea class="x-ta" id="msg" aria-label="Message to check" placeholder="Paste the message, link or number here…"></textarea></div>
+          <div class="x-chips" id="chips"></div>
+          <button class="x-go" id="go">Sniff it</button>
+          <p class="x-count" id="count"></p>
+          <div id="out"></div>
+          <div class="x-card x-up" id="up" hidden>
+            <h3>You've used today's 15 free checks</h3>
+            <p>Sniff Pro gives you unlimited checks, screenshot scanning and deep link scans — from <span data-p="₹99|$3.99">₹99</span>/mo.</p>
+            <button class="x-go" id="toPro">See Sniff Pro</button>
+            <button class="x-link" id="reset">Continue free (demo)</button>
+          </div>
+          <h2 class="x-h2">Going around this week</h2>
+          <div class="x-trend" id="trend"></div>
+        </section>
+
+        <section data-tab="spot" hidden>
+          <h1 class="x-h1">Scam or Legit? <em>Today's 5</em></h1>
+          <p class="x-sub">One message at a time. Trust your nose, then see the giveaway.</p>
+          <div id="game"></div>
+        </section>
+
+        <section data-tab="family" hidden>
+          <h1 class="x-h1">Your parents get these messages <em>too.</em></h1>
+          <p class="x-sub">Family Shield: add up to 6 people. When they're unsure, they forward it to Sniff — and you get a heads-up if they nearly fall for one.</p>
+          <div class="x-row"><h2 class="x-h2">Your family</h2><span class="x-n" id="fcount">0 of 6</span></div>
+          <div class="x-fam" id="fam"></div>
+          <div class="x-row"><h2 class="x-h2">Protection report</h2><span class="x-tag">Sample</span></div>
+          <div class="x-card x-rep">
+            <p><b>This month: 7 checked · 2 scams stopped</b></p>
+            <div class="x-nums"><div><b>7</b><small>messages checked</small></div><div><b>2</b><small>scams stopped</small></div></div>
+            <p class="x-note">You'll get one of these every month, plus an alert the moment someone nearly falls for one.</p>
+          </div>
+        </section>
+
+        <section data-tab="pro" hidden>
+          <h1 class="x-h1">Sniff <em>without limits.</em></h1>
+          <p class="x-sub">Start free. Upgrade when you want more — or cover the whole family.</p>
+          <div class="x-seg" id="cur" role="group" aria-label="Currency"><button data-c="0" aria-pressed="true">₹</button><button data-c="1" aria-pressed="false">$</button></div>
+          <div class="x-plans">
+            <div class="x-card x-plan">
+              <h3>Free</h3>
+              <p class="x-price"><span data-p="₹0|$0">₹0</span><small> forever</small></p>
+              <ul class="x-feat"><li>15 checks a day</li><li>Spot It daily game</li><li>Share warnings with family</li></ul>
+              <button class="x-btn" disabled>Your current plan</button>
+            </div>
+            <div class="x-card x-plan">
+              <h3>Sniff Pro</h3>
+              <p class="x-price"><span data-p="₹99|$3.99">₹99</span><small>/mo</small></p>
+              <p class="x-ann">or <span data-p="₹799|$29.99">₹799</span>/year <span class="x-save">save 33%</span></p>
+              <ul class="x-feat"><li>Unlimited checks</li><li>Screenshot scanning</li><li>Deep link scan</li><li>“What to say” scripts for scam calls</li></ul>
+              <button class="x-btn" data-sheet="Sniff Pro">Get Sniff Pro</button>
+            </div>
+            <div class="x-card x-plan x-plan--hi">
+              <span class="x-badge">Most popular</span>
+              <h3>Sniff Family</h3>
+              <p class="x-price"><span data-p="₹199|$6.99">₹199</span><small>/mo</small></p>
+              <ul class="x-feat"><li>Pro for up to 6 people</li><li>Near-miss alerts</li><li>Monthly family report</li></ul>
+              <button class="x-go" data-sheet="Sniff Family">Get Sniff Family</button>
+            </div>
+          </div>
+          <div class="x-api"><p>Banks &amp; telecoms: put Sniff in your app — <b>Sniff API</b></p><button class="x-btn" data-sheet="Sniff API">Talk to us</button></div>
+        </section>
+      </main>
+
+      <nav class="x-tabs" role="tablist" aria-label="Sections">
+        <button role="tab" aria-selected="true" data-go="sniff"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Sniff</button>
+        <button role="tab" aria-selected="false" data-go="spot"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Spot It</button>
+        <button role="tab" aria-selected="false" data-go="family"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.5 4 2.5 4 6"/></svg>Family</button>
+        <button role="tab" aria-selected="false" data-go="pro"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Pro</button>
+      </nav>
+      <div class="x-toast" id="toast" role="status"></div>
+      <div class="x-sheet" id="sheet" hidden>
+        <div class="x-sheet__bg" id="sheetBg"></div>
+        <div class="x-sheet__box" role="dialog" aria-modal="true" aria-labelledby="sheetT">
+          <div class="x-grab"></div>
+          <button class="x-x" id="sheetX" aria-label="Close">✕</button>
+          <form class="x-form" id="sheetF">
+            <div><h2 id="sheetT">Join the early-access list</h2><p class="x-sub" id="sheetSub" style="margin:0"></p></div>
+            <input class="x-in" type="email" id="email" required placeholder="you@example.com" aria-label="Email" autocomplete="email" />
+            <button class="x-go" style="margin-top:0">Join the list</button>
+          </form>
+          <div class="x-done" id="sheetOk" hidden><svg width="56" height="56"><use href="#logo"/></svg><h2>You're on the list 👃</h2><p class="x-sub" style="margin:0">We'll email you the moment it's ready.</p></div>
+        </div>
+      </div>
+    </div>
+    <script src="hark.js"></script>
+    <script>
+      const SNIFF_API_URL = "https://sniff-api.srishankjashankreddy.workers.dev/";
+      const $ = (s) => document.querySelector(s);
+      const EX = [
+        ["📦 Parcel at customs", "India Post: Your parcel is held at customs due to incomplete address. Pay ₹49 redelivery fee within 24 hours or it will be returned. Pay here: bit.ly/IndPost-fee"],
+        ["🏦 KYC expires today", "Dear SBI customer, your YONO account will be blocked today as your KYC expires. Update your PAN and verify account now: http://sbi-kyc-update.xyz/login"],
+        ["💸 Earn ₹3,000/day", "Hi! Part-time job from home. Earn ₹3,000/day just by liking YouTube videos. Guaranteed payment daily. Contact our HR on Telegram: t.me/likejobs_hr"],
+        ["👩 Hi mum, new number", "Hi mum, this is my new number, my phone broke. Need money urgently for a bill — can you transfer ₹18,000 to rahul.k22@ybl? Will explain later, please don't tell dad."],
+      ];
+      const TR = [
+        ["🚔", "Digital arrest calls", "Fake CBI or police on video call", "This is CBI officer Rajesh Kumar. A parcel in your name with drugs was seized by customs. You are under digital arrest. Stay on video call, keep this confidential and transfer ₹95,000 for verification or police will arrest you today."],
+        ["💡", "Fake electricity bill", "“Power cut tonight” SMS", "Dear consumer, your electricity connection will be disconnected tonight at 9:30 PM as last month bill was not updated. Call our officer 9876543210 immediately and install AnyDesk to update."],
+        ["📋", "Task-based jobs", "Pay to unlock “VIP tasks”", "Congratulations! You are selected for an Amazon review task. Complete 3 tasks and earn ₹5,000 per day. Deposit ₹1,000 to unlock VIP tasks. Join Telegram: t.me/amz_tasks"],
+        ["🪙", "Wrong-number crypto", "Friendly chat, then USDT", "Hi, is this Priya? Sorry, wrong number 😊 Nice to meet you anyway! I trade USDT with guaranteed returns of 30% a month, I can teach you. Download our app: tradeprox.top/app.apk"],
+      ];
+      const OFF = ["sbi.co.in", "onlinesbi.sbi", "hdfcbank.com", "icicibank.com", "axisbank.com", "amazon.in", "amazon.com", "fedex.com", "indiapost.gov.in", "paytm.com", "flipkart.com"];
+      const brandDom = (m) => { const d = m[0].replace(/^https?:\/\//i, "").split("/")[0].toLowerCase(); return /sbi|hdfc|icici|axis|amazon|fedex|indiapost|paytm|flipkart/.test(d) && !OFF.some((o) => d === o || d.endsWith("." + o)); };
+      // [category, weight, regex, tag, filter]
+      const R = [
+        ["urg", 12, /\b(urgent(ly)?|immediately|today|tonight|within \d+ ?(hours?|hrs|mins?|minutes)|last chance|final notice|right now)\b/gi],
+        ["urg", 15, /\b(blocked|suspended|disconnected|deactivated|expires?|expired)\b/gi],
+        ["urg", 20, /\b(arrest(ed)?|digital arrest|police|cbi|legal action|warrant|court|narcotics)\b/gi, "arrest"],
+        ["urg", 15, /\bcustoms\b/gi, "customs"],
+        ["money", 15, /\b(pay|fee|charges?|transfer|send money|deposit)\b/gi],
+        ["money", 25, /\b[\w.\-]+@(ybl|okaxis|oksbi|okhdfcbank|okicici|paytm|upi|apl|ibl|axl)\b/gi],
+        ["money", 20, /\b(gift ?cards?|crypto|usdt|bitcoin|btc)\b/gi, "crypto"],
+        ["money", 5, /₹\s?[\d,]+|\brs\.?\s?[\d,]+/gi],
+        ["cred", 25, /\b(otp|pin|cvv|password)\b/gi],
+        ["cred", 18, /\b(kyc|pan|aadha?ar)\b/gi],
+        ["cred", 15, /\b(verify|update) (your )?(account|details|kyc|pan)\b/gi],
+        ["good", 22, /\b(won|winner|prize|lottery|lucky draw|jackpot)\b/gi, "lottery"],
+        ["good", 25, /\bearn\b[^.]{0,25}?(per day|\/day|a day|daily)|\b(part[- ]time|work from home|like (youtube )?videos|liking (youtube )?videos|guaranteed (returns|profit|payment)|double your money)\b/gi],
+        ["imp", 10, /\b(sbi|hdfc|icici|axis bank|amazon|flipkart|fedex|dhl|india post|electricity|income tax|trai|rbi)\b/gi],
+        ["imp", 20, /\b(new number|lost my phone|my phone broke|hi (mum|mom|dad|papa|maa))\b/gi, "family"],
+        ["link", 20, /\b(bit\.ly|tinyurl\.com|cutt\.ly|t\.ly|is\.gd|rb\.gy|shorturl\.at|goo\.gl)\/\S*/gi],
+        ["link", 22, /\b(?:[a-z0-9-]+\.)+(xyz|top|click|live|icu|shop|buzz)\b(\/\S*)?/gi],
+        ["link", 25, /https?:\/\/\d{1,3}(\.\d{1,3}){3}\S*/gi],
+        ["link", 25, /\b(?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}(?:\/\S*)?/gi, "", brandDom],
+        ["link", 10, /\bhttp:\/\/\S+/gi],
+        ["chan", 20, /\b(telegram|t\.me|anydesk|teamviewer|quicksupport|rustdesk|apk)\b/gi],
+        ["chan", 18, /\b(keep (this )?(confidential|secret)|don'?t tell (anyone|dad|mum|mom)|stay on (the )?(video )?call)\b/gi],
+        ["lure", 40, /\bfree\s*(robux|v-?bucks|nitro|discord nitro|skins?|diamonds|gems|coins)\b|\bclaim\s+(your\s+)?(free\s+)?(skins?|robux|v-?bucks|nitro)\b/gi],
+      ];
+      // Look-alike (typosquat) detection: [brand, official domains, name keys]
+      const BR = [
+        ["Roblox", ["roblox.com"], ["roblox"]], ["Google", ["google.com"], ["google"]], ["YouTube", ["youtube.com"], ["youtube"]],
+        ["Gmail", ["gmail.com"], ["gmail"]], ["Apple", ["apple.com"], ["apple"]], ["iCloud", ["icloud.com"], ["icloud"]],
+        ["Microsoft", ["microsoft.com"], ["microsoft"]], ["Outlook", ["outlook.com"], ["outlook"]], ["PayPal", ["paypal.com"], ["paypal"]],
+        ["Amazon", ["amazon.com", "amazon.in"], ["amazon"]], ["Flipkart", ["flipkart.com"], ["flipkart"]], ["Netflix", ["netflix.com"], ["netflix"]],
+        ["Instagram", ["instagram.com"], ["instagram"]], ["Facebook", ["facebook.com"], ["facebook"]], ["WhatsApp", ["whatsapp.com"], ["whatsapp"]],
+        ["Telegram", ["telegram.org"], ["telegram"]], ["Discord", ["discord.com"], ["discord"]],
+        ["Steam", ["steamcommunity.com", "steampowered.com"], ["steamcommunity", "steampowered", "steam"]], ["Epic Games", ["epicgames.com"], ["epicgames"]],
+        ["Binance", ["binance.com"], ["binance"]], ["Coinbase", ["coinbase.com"], ["coinbase"]], ["SBI", ["sbi.co.in", "onlinesbi.sbi"], ["onlinesbi", "sbi"]],
+        ["HDFC Bank", ["hdfcbank.com"], ["hdfcbank", "hdfc"]], ["ICICI Bank", ["icicibank.com"], ["icicibank", "icici"]], ["Axis Bank", ["axisbank.com"], ["axisbank"]],
+        ["Paytm", ["paytm.com"], ["paytm"]], ["PhonePe", ["phonepe.com"], ["phonepe"]], ["IRCTC", ["irctc.co.in"], ["irctc"]],
+        ["India Post", ["indiapost.gov.in"], ["indiapost"]], ["Income Tax", ["incometax.gov.in"], ["incometax"]], ["FedEx", ["fedex.com"], ["fedex"]],
+        ["DHL", ["dhl.com"], ["dhl"]], ["LinkedIn", ["linkedin.com"], ["linkedin"]], ["X", ["x.com"], ["x"]], ["Twitter", ["twitter.com"], ["twitter"]],
+        ["Spotify", ["spotify.com"], ["spotify"]], ["Swiggy", ["swiggy.com"], ["swiggy"]], ["Zomato", ["zomato.com"], ["zomato"]],
+      ];
+      // Real short/service domains of the same brands, never flagged
+      const ALLOW = ["youtu.be", "wa.me", "t.me", "fb.com", "fb.me", "amzn.in", "amzn.to", "paypal.me", "live.com", "office.com", "microsoftonline.com", "googleapis.com", "gstatic.com", "googleusercontent.com", "amazonaws.com", "discord.gg", "x.co"];
+      const OFFICIAL = BR.flatMap((b) => b[1]).concat(ALLOW);
+      const isOfficial = (d) => OFFICIAL.some((o) => d === o || d.endsWith("." + o));
+      const LEET = { 0: "o", 1: "l", 3: "e", 4: "a", 5: "s", 7: "t", 8: "b", $: "s" };
+      const norm0 = (l) => l.toLowerCase().replace(/^[\d-]+|[\d-]+$/g, "").replace(/[0134578$]/g, (c) => LEET[c]).replace(/rn/g, "m").replace(/vv/g, "w");
+      const norm = (l) => norm0(l).replace(/([a-z])\1+/g, "$1");
+      const lev = (a, b) => {
+        let p = Array.from({ length: b.length + 1 }, (_, j) => j);
+        for (let i = 1; i <= a.length; i++) { const c = [i]; for (let j = 1; j <= b.length; j++) c[j] = Math.min(p[j] + 1, c[j - 1] + 1, p[j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); p = c; }
+        return p[b.length];
+      };
+      const BKEYS = BR.flatMap(([name, offs, keys]) => keys.map((k) => [norm(k), name, offs[0], norm0(k)]));
+      // Edit distance to the brand's real spelling: ≤1 for brands of 6 letters or fewer, ≤2 for 7+
+      const near = (flat, flat0, raw) => {
+        const lim = raw.length <= 6 ? 1 : 2;
+        return Math.min(lev(flat, raw), lev(flat0, raw)) <= lim;
+      };
+      function imitates(label) {
+        const n = norm(label), flat = n.replace(/-/g, ""), flat0 = norm0(label).replace(/-/g, "");
+        if (!flat) return null;
+        for (const [k, name, off, raw] of BKEYS) {
+          if (flat === k) return [name, off];
+          if (k.length < 3 || flat.length < 3) continue;
+          if (k.length >= 5) {
+            if (near(flat, flat0, raw)) return [name, off];
+            if (flat.includes(k)) return [name, off];
+          } else {
+            if (near(flat, flat0, raw)) return [name, off];
+            if (n.split("-").some((tk) => tk === k || (tk.length >= k.length + 3 && (tk.startsWith(k) || tk.endsWith(k))))) return [name, off];
+          }
+        }
+        return null;
+      }
+      // Labels a domain could imitate with: everything but the public suffix and "www"
+      const domLabels = (d) => {
+        const p = d.split(".");
+        p.pop();
+        if (p.length >= 2 && /^(co|com|gov|org|net|ac|edu|nic)$/.test(p[p.length - 1])) p.pop();
+        return p.filter((l) => l && l !== "www");
+      };
+      const DOM = /(?<![\w@.$-])(?:https?:\/\/)?((?:[a-z0-9$-]+\.)+[a-z]{2,})(?![\w-])(?::\d+)?(?:\/\S*)?/gi;
+      const BARE = /^(?:https?:\/\/)?((?:[a-z0-9$-]+\.)+[a-z]{2,})(?::\d+)?(?:\/\S*)?$/i;
+      const FLAG = {
+        urg: ["Pressure to act fast", "Deadlines and threats are meant to rush you. Real banks, police and courts don't threaten you over a message."],
+        money: ["Asks you to pay or transfer", "A fee, UPI transfer, gift card or crypto to a stranger is the scam's whole goal."],
+        cred: ["Asks for private details", "No genuine bank or company asks for OTP, PIN, KYC, PAN or Aadhaar through a message."],
+        good: ["Too good to be true", "Easy money, surprise prizes or guaranteed returns are bait — the 'fees' come next."],
+        imp: ["Pretends to be someone you trust", "Uses a bank, brand, government office or family member's name to lower your guard."],
+        link: ["Risky link", "Short links, odd endings like .xyz, or a brand name in a fake address hide where you'll really land."],
+        chan: ["Moves you somewhere hidden", "Telegram, AnyDesk, APK files or 'keep it secret' let scammers control you or your phone."],
+        lure: ["Free game currency bait", "Free Robux, V-Bucks, Nitro or skins don't exist — these 'gifts' steal your account login."],
+        bare: ["Unknown link, no context", "A link on its own, from someone you can't place, is a common way to start phishing. Don't open it until you know who sent it."],
+      };
+      function analyze(t) {
+        const cats = {}, tags = new Set(), rng = [], fm = { ...FLAG };
+        for (const [c, w, re, tag, f] of R) {
+          let hit = false;
+          for (const m of t.matchAll(re)) { if (f && !f(m)) continue; rng.push([m.index, m.index + m[0].length]); hit = true; }
+          if (hit) { cats[c] = (cats[c] || 0) + w; tag && tags.add(tag); }
+        }
+        // Look-alike domains, in links and bare domains alike
+        for (const m of t.matchAll(DOM)) {
+          const d = m[1].toLowerCase();
+          if (isOfficial(d)) continue;
+          let hit = null;
+          for (const l of domLabels(d)) if ((hit = imitates(l))) break;
+          if (!hit) continue;
+          rng.push([m.index, m.index + m[0].length]);
+          if (!cats.fake) { cats.fake = 70; fm.fake = ["Fake look-alike website", `This imitates ${hit[0]} (real site: ${hit[1]}). Scammers use near-identical names to steal logins.`]; }
+        }
+        // A link on its own, with no other text
+        const bare = t.trim().match(BARE);
+        if (bare && !isOfficial(bare[1].toLowerCase())) { cats.bare = 35; rng.push([t.indexOf(bare[0]), t.indexOf(bare[0]) + bare[0].length]); }
+        const keys = Object.keys(cats).sort((a, b) => cats[b] - cats[a]), n = keys.length;
+        let score = keys.reduce((s, k) => s + cats[k], 0) + (n >= 3 ? 15 : n === 2 ? 5 : 0);
+        score = Math.max(0, Math.min(100, score));
+        const v = score >= 65 ? "scam" : score >= 30 ? "sus" : "safe", top = keys[0];
+        const type = !n ? "No red flags found." : {
+          urg: tags.has("arrest") ? "Digital arrest / threat scam" : tags.has("customs") ? "Fake parcel / customs fee scam" : "Urgent threat scam",
+          money: tags.has("family") ? "“Hi Mum” family impersonation" : tags.has("crypto") ? "Crypto investment scam" : "Payment fraud",
+          cred: "KYC / OTP phishing",
+          good: tags.has("lottery") ? "Lottery / prize scam" : tags.has("crypto") ? "Crypto investment scam" : "Task-based job scam",
+          imp: tags.has("family") ? "“Hi Mum” family impersonation" : "Brand impersonation",
+          link: "Phishing link",
+          chan: "Remote-access scam",
+          fake: "Fake look-alike website",
+          lure: "Free game currency scam",
+          bare: "Unknown link",
+        }[top];
+        const steps = [];
+        if (v === "safe") steps.push("Nothing risky found. Still, if it feels off, check with the sender on a number you already know.", "Never share an OTP, PIN or CVV with anyone.");
+        else {
+          steps.push("Don't click any link, reply, or pay anything.");
+          tags.has("family") ? steps.push("Call your family member on their old number to check it's really them.") : steps.push("Never share an OTP, PIN or CVV — not even with 'bank staff' or 'police'.");
+          steps.push("Block the sender and report it: call 1930 or visit cybercrime.gov.in.");
+          steps.push("Already paid? Call your bank right away to freeze it, then call 1930.");
+        }
+        return { score, v, type, flags: keys.map((k) => fm[k]), keys, fm, rng, steps };
+      }
+      const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+      function highlight(t, rng) {
+        rng.sort((a, b) => a[0] - b[0]);
+        let out = "", i = 0;
+        for (const [s, e] of rng) { if (e <= i) continue; const st = Math.max(s, i); out += esc(t.slice(i, st)) + "<mark>" + esc(t.slice(st, e)) + "</mark>"; i = e; }
+        return out + esc(t.slice(i));
+      }
+      const V = { scam: ["SCAM", "#D65A56"], sus: ["SUSPICIOUS", "#D99A35"], safe: ["LOOKS SAFE", "#3FA877"] };
+      let left = 15, summary = "";
+      const count = () => { $("#count").innerHTML = left ? `Free checks today: <b>${left} of 15</b> left` : "No free checks left today."; $("#go").disabled = !left; $("#up").hidden = !!left; };
+      const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 1600); };
+      function run() {
+        const t = $("#msg").value.trim();
+        if (!t) { $("#msg").focus(); return toast("Paste a message first"); }
+        if (!left) return;
+        left--; count();
+        const useAI = !!SNIFF_API_URL, rules = analyze(t);
+        $("#out").innerHTML = `<div class="x-load" role="status"><svg width="56" height="56"><use href="#logo"/></svg>${useAI ? "Sniffing with AI…" : "Checking scam patterns…"}</div>`;
+        $("#out").scrollIntoView({ behavior: "smooth", block: "start" });
+        if (!useAI) return setTimeout(() => show(t, rules), 1000);
+        $("#go").disabled = true;
+        askAI(t)
+          .then((a) => show(t, merge(t, a, rules)), () => show(t, rules))
+          .finally(count);
+      }
+
+      // AI via the Sniff proxy, which holds the key. Expects {verdict, score, scam_type, red_flags[{title, explanation, quote}], what_to_do[], summary}.
+      const VMAP = { SCAM: "scam", SUSPICIOUS: "sus", LOOKS_SAFE: "safe", "LOOKS SAFE": "safe", SAFE: "safe" };
+      function clean(d) {
+        if (!d || typeof d !== "object") throw new Error("bad JSON");
+        if ("error" in d || !("verdict" in d)) throw new Error("AI error");
+        const v = VMAP[String(d.verdict || "").trim().toUpperCase()], score = Number(d.score);
+        if (!v || !isFinite(score)) throw new Error("bad JSON");
+        const str = (x) => (typeof x === "string" ? x.trim() : "");
+        return {
+          v, score: Math.round(Math.max(0, Math.min(100, score))), type: str(d.scam_type), summary: str(d.summary),
+          flags: (Array.isArray(d.red_flags) ? d.red_flags : []).filter((f) => f && str(f.title)).map((f) => ({ title: str(f.title), expl: str(f.explanation), quote: str(f.quote) })),
+          steps: (Array.isArray(d.what_to_do) ? d.what_to_do : []).map(str).filter(Boolean),
+        };
+      }
+      async function askAI(t) {
+        const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), 12000);
+        try {
+          const res = await fetch(SNIFF_API_URL, { method: "POST", signal: ctl.signal, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: t }) });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          return clean(await res.json());
+        } finally { clearTimeout(tm); }
+      }
+      // Which rule categories an AI flag already covers
+      const COVER = {
+        urg: /urgen|pressure|deadline|threat|rush|hurry|arrest|police|block|suspend|disconnect|expir|customs|fear|time limit/,
+        money: /pay|fee|money|transfer|upi|deposit|crypto|usdt|gift card|fund|amount/,
+        cred: /otp|pin\b|cvv|password|kyc|pan\b|aadha|credential|personal|private|sensitive|details/,
+        good: /too good|prize|lottery|earn|returns?|job|task|offer|income|profit/,
+        imp: /imperson|pretend|brand|bank|official|family|relative|new number|posing|fake (sender|identity)/,
+        link: /link|url|domain|website|phishing site/,
+        chan: /telegram|anydesk|teamviewer|remote|apk|secret|confiden|off-platform|video call/,
+        fake: /look-?alike|typo-?squat|imitat|misspel/,
+        lure: /robux|v-?bucks|nitro|skins|free (game|gift)/,
+        bare: /no context|unknown link|unsolicited link/,
+      };
+      function merge(t, a, r) {
+        const floor = r.score >= 65, lt = t.toLowerCase(), rng = r.rng.slice();
+        for (const f of a.flags) {
+          if (f.quote.length < 2) continue;
+          let i = t.indexOf(f.quote);
+          if (i < 0) i = lt.indexOf(f.quote.toLowerCase());
+          if (i >= 0) rng.push([i, i + f.quote.length]);
+        }
+        const aiText = a.flags.map((f) => f.title + " " + f.expl).join(" ").toLowerCase();
+        const flags = a.flags.map((f) => [f.title, f.expl]).concat(r.keys.filter((k) => !COVER[k].test(aiText)).map((k) => r.fm[k]));
+        return {
+          score: floor ? Math.max(a.score, r.score) : a.score, v: floor ? "scam" : a.v,
+          type: a.type || r.type, sum: a.summary, flags, rng, steps: a.steps.length ? a.steps : r.steps, src: "ai",
+        };
+      }
+      $("#privNote").textContent = SNIFF_API_URL ? "Checked by Sniff AI. Your messages are never stored." : "Free, instant — nothing leaves your phone.";
+      const ring = (s) => `<div class="x-ring" role="img" aria-label="Risk ${s} out of 100"><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="t" cx="18" cy="18" r="16" pathLength="100"/><circle class="f" cx="18" cy="18" r="16" pathLength="100" stroke-dasharray="${Math.max(s, 1)} 100"/></svg><div><b>${s}</b><small>/ 100 risk</small></div></div>`;
+      function show(t, r) {
+        const [word, col] = V[r.v], top3 = r.flags.slice(0, 3).map((f) => f[0]).join(", ");
+        summary = `⚠️ Sniff flagged this as ${r.v === "safe" ? "LOOKS SAFE" : `a ${word}`} (${r.type}).` + (r.flags.length ? ` Red flags: ${top3}.` : "") + " Don't click or pay. Check any message free: sniff.app";
+        $("#out").innerHTML = `<div class="x-res" style="--c:${col}">
+          <div class="x-band"><div><h2>${word}</h2><p class="x-type">${esc(r.type)}</p>${r.sum ? `<p class="x-sum">${esc(r.sum)}</p>` : ""}<span class="x-ai">${r.src === "ai" ? "AI + rules" : "Rules"}</span></div>${ring(r.score)}</div>
+          <div class="x-sec"><h3>Red flags</h3>${r.flags.length ? `<ul class="x-flags">${r.flags.map(([a, b]) => `<li><b>${esc(a)}</b>${esc(b)}</li>`).join("")}</ul>` : "<p style='margin:0;font-size:14px'>No red flags found.</p>"}</div>
+          <div class="x-sec"><h3>Your message</h3><div class="x-msg">${highlight(t, r.rng)}</div></div>
+          <div class="x-sec"><h3>What to do now</h3><ol class="x-steps">${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol></div>
+          <div class="x-sec x-acts">
+            ${r.v === "safe" ? "" : `<a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(summary)}">Warn my family</a>`}
+            <button class="x-btn" id="copy">Copy summary</button>
+            <button class="x-btn" id="again">Sniff another</button>
+          </div></div>`;
+        $("#copy").onclick = copy;
+        $("#again").onclick = () => { $("#out").innerHTML = ""; $("#msg").value = ""; window.scrollTo({ top: 0, behavior: "smooth" }); $("#msg").focus(); };
+      }
+      function copy() {
+        const done = () => toast("Summary copied");
+        if (navigator.clipboard && isSecureContext) return navigator.clipboard.writeText(summary).then(done, fallback);
+        fallback();
+        function fallback() { const a = document.createElement("textarea"); a.value = summary; document.body.appendChild(a); a.select(); document.execCommand("copy"); a.remove(); done(); }
+      }
+      const load = (t, b) => {
+        const m = $("#msg"); m.textContent = t; m.value = t; $("#out").innerHTML = "";
+        document.querySelectorAll(".x-chip,.x-trend button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+        window.scrollTo({ top: 0, behavior: "smooth" }); toast("Example loaded — tap Sniff it");
+      };
+      EX.forEach(([l, t]) => { const b = document.createElement("button"); b.className = "x-chip"; b.textContent = l; b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#chips").appendChild(b); });
+      TR.forEach(([i, h, s, t]) => { const b = document.createElement("button"); b.innerHTML = `<i>${i}</i><b>${h}</b><small>${s}</small>`; b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#trend").appendChild(b); });
+      $("#go").onclick = run;
+      const tab = (n) => {
+        document.querySelectorAll("[data-go]").forEach((x) => x.setAttribute("aria-selected", x.dataset.go === n));
+        document.querySelectorAll("[data-tab]").forEach((s) => (s.hidden = s.dataset.tab !== n));
+        $("#wm").textContent = n === "pro" ? " pro" : "";
+        window.scrollTo(0, 0);
+      };
+      document.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => tab(b.dataset.go)));
+      $("#toPro").onclick = () => tab("pro");
+      $("#reset").onclick = () => { left = 15; count(); toast("Free checks reset (demo)"); };
+      count();
+
+      // Spot It: [from, channel, text, isScam, giveaway]
+      const POOL = [
+        ["VM-FDXPRS", "SMS", "FedEx: Your shipment #77412 is on hold due to unpaid customs duty of ₹38. Pay within 12 hrs to avoid return: fedex-in.delivery-fee.top/pay", 1, "The link isn't fedex.com — couriers don't text you for tiny surprise fees."],
+        ["+91 70214 88301", "SMS", "Dear Customer, your SBI YONO account will be suspended today. Complete your KYC now to avoid blocking: sbi-kyc-verify.in/login", 1, "SBI never sends KYC links by SMS, and never from a normal mobile number."],
+        ["+44 7700 900123", "WhatsApp", "Hello! I'm Ananya from HR 😊 Earn ₹2,500–₹8,000 daily just by rating hotels on Google. Join our Telegram to start: t.me/hotelreview_job", 1, "Paid “tasks” on Telegram always end with you depositing money to unlock bigger ones."],
+        ["Video call · “CBI Mumbai”", "Call script", "“This is Inspector Vikram Singh, CBI. Your Aadhaar is linked to a money-laundering case. You are under digital arrest. Don't disconnect, don't tell your family, and transfer your savings to an RBI verification account.”", 1, "“Digital arrest” doesn't exist — real police never demand money or secrecy on a video call."],
+        ["+92 300 1234567", "WhatsApp", "Congratulations!! Your number has won ₹25,00,000 in the KBC Lucky Draw. To claim, pay ₹12,500 processing fee and contact manager Rana Pratap on WhatsApp.", 1, "You can't win a draw you never entered — and real prizes never charge a fee."],
+        ["AD-SBIOTP", "SMS", "482913 is your OTP for a transaction of ₹2,340.00 at AMAZON on your SBI card ending 4417. Valid for 10 mins. Never share this OTP with anyone. Not you? Call the number on the back of your card.", 0, "No link, no ask — it tells you never to share the OTP. That's how real banks text."],
+        ["AX-AMAZON", "SMS", "Out for delivery: Your package with boAt Airdopes 141 will arrive today by 9 PM. Track your package: amazon.in/progress-tracker", 0, "The link is the real amazon.in, and nothing asks you to pay or log in."],
+        ["VM-SWIGGY", "SMS", "Your Swiggy order #158204 from Meghana Foods is confirmed! ₹486 paid via UPI. Arriving in 32 mins.", 0, "It confirms something you ordered — no link, no request, nothing to pay."],
+        ["AD-AIRTEL", "SMS", "Dear customer, your Airtel Postpaid bill of ₹599 for 98XXXXX210 is due on 18 Jun. Pay via the Airtel Thanks app. Ignore if already paid.", 0, "No link and no threat — it points you to the official app you already use."],
+        ["Rohan 🍕", "WhatsApp", "Dinner at Toit tomorrow at 8? Priya and Karan are in. I'll book a table for 5 😄", 0, "A friend making plans from a saved contact — no money, no links, no rush."],
+      ];
+      const PCT = [5, 18, 35, 56, 78, 94];
+      const shuffle = (a) => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+      let G;
+      function newGame() {
+        const k = Math.random() < 0.5 ? 2 : 3;
+        G = { q: shuffle([...shuffle(POOL.filter((p) => p[3])).slice(0, k), ...shuffle(POOL.filter((p) => !p[3])).slice(0, 5 - k)]), i: 0, r: [] };
+        drawQ();
+      }
+      const dots = () => G.q.map((_, i) => `<i class="${i < G.r.length ? (G.r[i] ? "ok" : "no") : i === G.i ? "now" : ""}"></i>`).join("");
+      function drawQ() {
+        const [f, c, t] = G.q[G.i];
+        $("#game").innerHTML = `<div class="x-card"><div class="x-gtop"><span>Message ${G.i + 1} of 5</span><span class="x-dots" id="dots">${dots()}</span></div>
+          <p class="x-from">${esc(f)} <small>· ${c}</small></p><div class="x-msg">${esc(t)}</div></div>
+          <div class="x-vote" id="vote"><button data-a="scam">SCAM</button><button data-a="legit">LEGIT</button></div><div id="rev"></div>`;
+        $("#vote").onclick = (e) => { const b = e.target.closest("button"); b && answer(b.dataset.a === "scam"); };
+      }
+      function answer(saidScam) {
+        const scam = !!G.q[G.i][3], ok = saidScam === scam;
+        G.r.push(ok); $("#vote").hidden = true; $("#dots").innerHTML = dots();
+        $("#rev").innerHTML = `<div class="x-res" style="--c:${scam ? "#D65A56" : "#3FA877"}"><div class="x-band"><div><h2>${scam ? "SCAM" : "LEGIT"}</h2><p class="x-type">${ok ? "✓ You got it" : "✗ Not quite"}</p></div></div>
+          <div class="x-sec"><p class="x-why">${G.q[G.i][4]}</p></div></div><button class="x-go" id="next">${G.i < 4 ? "Next" : "See my score"}</button>`;
+        $("#next").onclick = () => { G.i++; G.i < 5 ? drawQ() : end(); window.scrollTo({ top: 0, behavior: "smooth" }); };
+        $("#next").focus({ preventScroll: true });
+      }
+      function end() {
+        const s = G.r.filter(Boolean).length, txt = `I scored ${s}/5 on today's Sniff scam test. Bet you can't beat me 👃 sniff.app/spot`;
+        $("#game").innerHTML = `<div class="x-card x-ph"><svg width="56" height="56"><use href="#logo"/></svg><p class="x-big">${s}/5</p><h2>Sharper than ${PCT[s]}% of players</h2>
+          <p class="x-streak">🔥 Day 1 streak — 5 new ones tomorrow</p>
+          <div class="x-acts"><a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(txt)}">Challenge a friend</a><button class="x-btn" id="replay">Play again</button></div></div>`;
+        $("#replay").onclick = newGame;
+      }
+      newGame();
+
+      // Family Shield
+      const REL = ["Mum", "Dad", "Grandparent", "Partner", "Sibling", "Child", "Friend", "Other"];
+      const code = () => Array.from({ length: 4 }, () => "abcdefghjkmnpqrstuvwxyz23456789"[(Math.random() * 31) | 0]).join("");
+      let fam = [], fOpen = null;
+      function drawFam() {
+        $("#fcount").textContent = `${fam.length} of 6`;
+        const slots = fam.length < 6 ? ["Mum", "Dad"].filter((r) => !fam.some((m) => m.rel === r)).concat("someone").slice(0, 6 - fam.length) : [];
+        $("#fam").innerHTML = fam.map((m) => `<div class="x-card x-mem"><div class="x-who"><span class="x-av">${esc(m.name[0].toUpperCase())}</span><div><b>${esc(m.name)}</b><small>${m.rel}</small></div><span class="x-tag">Invite pending</span></div>
+            <a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent("I added you to Sniff Family so scammers can't fool us. Tap to join: sniff.app/f/" + m.code)}">Send invite on WhatsApp</a></div>`).join("")
+          + slots.map((s) => s === fOpen
+            ? `<form class="x-card x-form" id="fform"><input class="x-in" id="fname" required maxlength="24" placeholder="Their name" aria-label="Name" />
+                <select class="x-in" id="frel" aria-label="Relation">${REL.map((r) => `<option${r === (s === "someone" ? "Grandparent" : s) ? " selected" : ""}>${r}</option>`).join("")}</select>
+                <div class="x-two"><button type="button" class="x-btn" id="fcancel">Cancel</button><button class="x-btn x-btn--wa">Add</button></div></form>`
+            : `<button class="x-slot" data-s="${s}">+ Add ${s}</button>`).join("");
+        document.querySelectorAll(".x-slot").forEach((b) => (b.onclick = () => { fOpen = b.dataset.s; drawFam(); $("#fname").focus(); }));
+        if ($("#fform")) {
+          $("#fcancel").onclick = () => { fOpen = null; drawFam(); };
+          $("#fform").onsubmit = (e) => {
+            e.preventDefault();
+            const name = $("#fname").value.trim();
+            if (!name) return $("#fname").focus();
+            fam.push({ name, rel: $("#frel").value, code: code() }); fOpen = null; drawFam(); toast(`${name} added — send the invite`);
+          };
+        }
+      }
+      drawFam();
+
+      // Pro: currency + early-access sheet
+      $("#cur").onclick = (e) => {
+        const b = e.target.closest("button"); if (!b) return;
+        document.querySelectorAll("#cur button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+        document.querySelectorAll("[data-p]").forEach((el) => (el.textContent = el.dataset.p.split("|")[b.dataset.c]));
+      };
+      let lastFocus;
+      const closeSheet = () => { $("#sheet").hidden = true; lastFocus && lastFocus.focus(); };
+      document.querySelectorAll("[data-sheet]").forEach((b) => (b.onclick = () => {
+        lastFocus = b;
+        $("#sheetSub").textContent = b.dataset.sheet === "Sniff API" ? "Leave your work email and our team will reach out about the Sniff API." : `${b.dataset.sheet} isn't live yet — leave your email and you'll be first in.`;
+        $("#sheetF").hidden = false; $("#sheetOk").hidden = true; $("#email").value = "";
+        $("#sheet").hidden = false; $("#email").focus();
+      }));
+      $("#sheetF").onsubmit = (e) => { e.preventDefault(); $("#sheetF").hidden = true; $("#sheetOk").hidden = false; $("#sheetX").focus(); };
+      $("#sheetBg").onclick = $("#sheetX").onclick = closeSheet;
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !$("#sheet").hidden) closeSheet(); });
+    </script>
+  </body>
+</html>
