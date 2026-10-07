@@ -1,0 +1,6 @@
+{
+  "name": "sniff",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=18" }
+}
