@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <title>Sniff — Sniff it before you trust it.</title>
-    <link rel="stylesheet" href="hark.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" />
+    <link rel="stylesheet" href="Sniff.css" />
     <style>
       body{background:#FAF7F2;color:#141414;margin:0}
       .x-app{--bg:#FAF7F2;--ink:#141414;--acc:#FF5A1F;--safe:#12B76A;--sus:#F5A524;--scam:#E5383B;--mute:#6b6660;--line:#e8e2d8;
@@ -98,7 +101,7 @@
       .x-save{background:#E3F7EC;color:#06603a;border-radius:999px;padding:2px 8px;font-weight:700;font-size:12px}
       .x-feat{list-style:none;margin:0;padding:0;display:grid;gap:7px;font-size:14px;line-height:1.35}
       .x-feat li{position:relative;padding-left:22px}
-      .x-feat li:before{content:"✓";position:absolute;left:0;color:var(--safe);font-weight:900}
+      .x-feat li:before{content:"";position:absolute;left:0}
       .x-plan .x-go,.x-up .x-go{margin-top:2px;min-height:52px;font-size:17px}
       .x-api{display:flex;align-items:center;gap:12px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mute)}
       .x-api p{margin:0;flex:1;line-height:1.4}
@@ -231,28 +234,138 @@
       .x-tabs button[aria-selected=true]:after{content:"";position:absolute;top:7px;right:calc(50% - 16px);width:5px;height:5px;border-radius:50%;background:#FF5A1F}
       .x-toast{bottom:calc(env(safe-area-inset-bottom) + 96px);background:rgba(20,20,20,.88);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
       @media (prefers-reduced-motion:reduce){.x-bg{animation:none}.x-ring .f{transition:none}}
+
+      /* ---- Calm, premium pass ---- */
+      html,body{background:#F8F3EC}
+      .x-bg{inset:-30%;background:
+        radial-gradient(40% 34% at 20% 16%,rgba(255,216,194,.5),transparent 70%),
+        radial-gradient(42% 38% at 84% 24%,rgba(224,214,250,.45),transparent 70%),
+        radial-gradient(48% 42% at 74% 84%,rgba(206,226,248,.5),transparent 70%),
+        radial-gradient(44% 40% at 16% 80%,rgba(252,238,220,.65),transparent 70%),
+        linear-gradient(160deg,#FBF6EE 0%,#FBEEE4 35%,#F2EDF8 68%,#EBF2F9 100%);
+        animation:x-drift 40s ease-in-out infinite alternate}
+      .x-app{--ink:#141414;--mute:#6B6B6B;--acc:#141414;--safe:#6E9C84;--sus:#B9975F;--scam:#BC716C;
+        --glass:rgba(255,255,255,.6);--gline:rgba(255,255,255,.75);--shadow:0 1px 2px rgba(20,20,20,.025);
+        font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+        padding:calc(env(safe-area-inset-top) + 28px) 24px calc(env(safe-area-inset-bottom) + 132px)}
+      .x-i{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;vertical-align:-3px}
+      .x-mono,.x-ico{flex:none;display:inline-grid;place-items:center;width:22px;height:22px;border-radius:7px;background:rgba(255,255,255,.75);border:1px solid rgba(20,20,20,.08);font:600 12px/1 system-ui,-apple-system,sans-serif;color:var(--ink)}
+      .x-ico{width:36px;height:36px;border-radius:12px;font-size:15px}
+      .x-ico .x-i{width:18px;height:18px}
+      .x-top{gap:10px;margin-bottom:48px}
+      .x-top svg{width:30px;height:30px}
+      .x-top b{font-size:30px}
+      .x-top b em{color:var(--ink)}
+      .x-top span{font-size:12px;color:var(--mute)}
+      .x-h1{font-size:44px;line-height:1.04;letter-spacing:-.015em;margin:0 0 16px}
+      .x-sub{font-size:15px;line-height:1.55;color:var(--mute);margin:0 0 28px}
+      .x-priv{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:13px}
+      .x-priv .x-i{width:15px;height:15px}
+      .x-card,.x-res,.x-trend button,.x-sheet__box{border-radius:28px;border:1px solid var(--gline);box-shadow:var(--shadow)}
+      .x-card{padding:24px}
+      .x-field{padding:20px 22px;background:rgba(255,255,255,.55);box-shadow:inset 0 0 0 1px rgba(20,20,20,.06),var(--shadow)}
+      .x-ta{font-size:17px;min-height:140px}
+      .x-ta::placeholder{color:#9A9A9A}
+      .x-chips{margin:16px -24px 0;padding:0 24px 4px}
+      .x-chip{display:inline-flex;align-items:center;gap:8px;padding:0 16px;font-size:14px;color:var(--ink);border:1px solid var(--gline);box-shadow:inset 0 0 0 1px rgba(20,20,20,.04)}
+      .x-chip .x-i{width:16px;height:16px;color:var(--mute)}
+      .x-go{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;margin-top:16px;font-weight:500;box-shadow:none}
+      .x-btn{gap:8px;min-height:50px;font-weight:500;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 0 0 1px rgba(20,20,20,.05)}
+      .x-btn--wa{background:#141414;color:#fff;border-color:#141414;box-shadow:none}
+      .x-count{font-size:13px;color:var(--mute);margin-top:14px}
+      .x-load svg{animation:x-pulse 1.2s ease-in-out infinite alternate}
+      @keyframes x-pulse{to{transform:scale(1.08);opacity:.6}}
+      .x-h2{font-size:28px;margin:56px 0 16px}
+      .x-row{margin:56px 0 16px}
+      .x-trend button{display:flex;flex-direction:column;align-items:flex-start;padding:20px;min-height:140px}
+      .x-trend b{font-weight:500;margin:16px 0 4px}
+      .x-trend small{color:var(--mute)}
+      .x-res{margin-top:28px}
+      .x-band{padding:24px 24px 20px}
+      .x-band h2{gap:6px;font-size:12px;padding:7px 12px 7px 10px;background:color-mix(in srgb,var(--c) 12%,#fff);color:color-mix(in srgb,var(--c) 50%,#141414)}
+      .x-band h2:before{content:none}
+      .x-band h2 .x-i{width:16px;height:16px;color:var(--c)}
+      .x-band p.x-type{font-size:28px;display:flex;align-items:center;gap:8px}
+      .x-band p.x-type .x-i{width:20px;height:20px;color:var(--c)}
+      .x-ring circle{stroke-width:2.5}
+      .x-sec{padding:20px 24px}
+      .x-sec h3{font-size:11px;color:var(--mute)}
+      .x-flags b{display:flex;align-items:center;gap:8px}
+      .x-flags li:before{background:color-mix(in srgb,var(--c) 75%,#fff)}
+      .x-msg{background:rgba(255,255,255,.5);border:1px solid rgba(20,20,20,.06)}
+      .x-msg mark{background:color-mix(in srgb,var(--c) 18%,transparent);font-weight:500}
+      .x-ai{display:inline-flex;align-items:center;gap:6px;font-weight:500;background:rgba(255,255,255,.7);border:1px solid rgba(20,20,20,.06)}
+      .x-ai .x-i{width:14px;height:14px}
+      .x-vote button,.x-vote [data-a=scam],.x-vote [data-a=legit]{display:flex;align-items:center;justify-content:center;gap:10px;min-height:72px;background:var(--glass);color:var(--ink);font-size:14px;font-weight:600;letter-spacing:.1em;border:1px solid var(--gline);box-shadow:inset 0 0 0 1px rgba(20,20,20,.04)}
+      .x-vote [data-a=scam] .x-i{color:var(--scam)}
+      .x-vote [data-a=legit] .x-i{color:var(--safe)}
+      .x-dots i.now{background:#141414}
+      .x-ph .x-streak{display:inline-flex;align-items:center;gap:8px;color:var(--ink);border:1px solid var(--gline)}
+      .x-ph .x-streak .x-i{color:var(--sus)}
+      .x-slot{display:flex;align-items:center;gap:10px;min-height:64px;border-radius:28px;color:var(--ink)}
+      .x-slot .x-i{color:var(--mute)}
+      .x-av{background:#141414}
+      .x-in{min-height:52px;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);box-shadow:inset 0 0 0 1px rgba(20,20,20,.06)}
+      .x-plan h3,.x-up h3{display:flex;align-items:center;gap:8px}
+      .x-plan h3 .x-i,.x-up h3 .x-i{color:var(--mute)}
+      .x-feat li:before{content:"";top:1px;width:16px;height:16px;background:var(--ink);
+        -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat;
+        mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center/contain no-repeat}
+      .x-feat{color:var(--mute)}
+      .x-plan--hi,.x-up{border:1px solid rgba(20,20,20,.7)}
+      .x-badge{background:#141414}
+      .x-tabs{left:50%;width:max-content;max-width:calc(100% - 32px);grid-template-columns:repeat(4,auto);gap:4px;padding:6px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.8);box-shadow:0 10px 30px -20px rgba(60,50,40,.25)}
+      .x-tabs button{min-width:72px;min-height:52px;padding:0 12px;font-size:12px;font-weight:500;color:var(--mute);gap:4px}
+      .x-tabs button[aria-selected=true]{background:#141414;color:#fff;font-weight:500}
+      .x-tabs button[aria-selected=true]:after{content:none}
+      .x-tabs svg{width:19px;height:19px;stroke-width:1.75}
+      .x-x{display:grid;place-items:center}
+      .x-x .x-i{width:20px;height:20px}
+      .x-ok{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;margin:0 auto 8px;background:color-mix(in srgb,var(--safe) 14%,#fff);color:var(--safe)}
+      .x-ok .x-i{width:24px;height:24px}
+      .x-toast{background:rgba(20,20,20,.9)}
       [hidden]{display:none!important}
     </style>
   </head>
   <body>
     <div class="x-bg" aria-hidden="true"></div>
     <div class="x-app" id="top">
-      <svg width="0" height="0" style="position:absolute"><symbol id="logo" viewBox="0 0 40 40"><rect width="40" height="40" rx="13" fill="#141414"/><ellipse cx="21" cy="22" rx="12" ry="9" fill="#FBF6EF"/><ellipse cx="16.5" cy="23" rx="2.4" ry="3.2" fill="#141414"/><ellipse cx="25.5" cy="23" rx="2.4" ry="3.2" fill="#141414"/><path d="M14 9q7-4 14 0" stroke="#FBF6EF" stroke-width="2.4" fill="none" stroke-linecap="round"/></symbol></svg>
-      <header class="x-top"><svg width="28" height="28" aria-hidden="true"><use href="#logo"/></svg><b>sniff<em id="wm"></em></b><span>Sniff it before you trust it.</span></header>
+      <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+        <symbol id="logo" viewBox="0 0 32 32"><g fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 4c.6 5.5-4 9.6-4 14.2a4.3 4.3 0 0 0 4.3 4.3h1.7a2.1 2.1 0 0 0 0-4.2"/><path d="M17.5 11.5c1.4-1.4 2.9 1.4 4.3 0s2.9 1.4 4.3 0"/><path d="M17.5 16.5c1.4-1.4 2.9 1.4 4.3 0s2.9 1.4 4.3 0"/><path d="M17.5 21.5c1.4-1.4 2.9 1.4 4.3 0"/></g></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+        <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
+        <symbol id="i-octagon" viewBox="0 0 24 24"><path d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></symbol>
+        <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+        <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></symbol>
+        <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+        <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+        <symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.59 13.51 6.83 3.98"/><path d="m15.41 6.51-6.82 3.98"/></symbol>
+        <symbol id="i-copy" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></symbol>
+        <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+        <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-package" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 8.7 5 8.7-5"/></symbol>
+      </svg>
+      <header class="x-top"><svg width="30" height="30" aria-hidden="true"><use href="#logo"/></svg><b>sniff<em id="wm"></em></b><span>Sniff it before you trust it.</span></header>
 
       <main>
         <section data-tab="sniff">
           <h1 class="x-h1">Got a weird message? Paste it. <em>We'll sniff it.</em></h1>
-          <p class="x-sub">Texts, WhatsApp forwards, links, numbers. <span id="privNote">Free, instant — nothing leaves your phone.</span></p>
-          <div class="x-card"><textarea class="x-ta" id="msg" aria-label="Message to check" placeholder="Paste the message, link or number here…"></textarea></div>
+          <p class="x-sub">Texts, WhatsApp forwards, links, numbers. <span class="x-priv"><svg class="x-i" aria-hidden="true"><use href="#i-lock"/></svg><span id="privNote">Free, instant — nothing leaves your phone.</span></span></p>
+          <div class="x-card x-field"><textarea class="x-ta" id="msg" aria-label="Message to check" placeholder="Paste the message, link or number here…"></textarea></div>
           <div class="x-chips" id="chips"></div>
           <button class="x-go" id="go">Sniff it</button>
           <p class="x-count" id="count"></p>
           <div id="out"></div>
           <div class="x-card x-up" id="up" hidden>
-            <h3>You've used today's 15 free checks</h3>
+            <h3><svg class="x-i" aria-hidden="true"><use href="#i-lock"/></svg>You've used today's 15 free checks</h3>
             <p>Sniff Pro gives you unlimited checks, screenshot scanning and deep link scans — from <span data-p="₹99|$3.99">₹99</span>/mo.</p>
-            <button class="x-go" id="toPro">See Sniff Pro</button>
+            <button class="x-go" id="toPro"><svg class="x-i" aria-hidden="true"><use href="#i-sparkles"/></svg>See Sniff Pro</button>
             <button class="x-link" id="reset">Continue free (demo)</button>
           </div>
           <h2 class="x-h2">Going around this week</h2>
@@ -279,8 +392,8 @@
         </section>
 
         <section data-tab="pro" hidden>
-          <h1 class="x-h1">Sniff <em>without limits.</em></h1>
-          <p class="x-sub">Start free. Upgrade when you want more — or cover the whole family.</p>
+          <h1 class="x-h1">sniff <em>pro</em></h1>
+          <p class="x-sub">Sniff without limits. Start free. Upgrade when you want more — or cover the whole family.</p>
           <div class="x-seg" id="cur" role="group" aria-label="Currency"><button data-c="0" aria-pressed="true">₹</button><button data-c="1" aria-pressed="false">$</button></div>
           <div class="x-plans">
             <div class="x-card x-plan">
@@ -290,7 +403,7 @@
               <button class="x-btn" disabled>Your current plan</button>
             </div>
             <div class="x-card x-plan">
-              <h3>Sniff Pro</h3>
+              <h3><svg class="x-i" aria-hidden="true"><use href="#i-sparkles"/></svg>Sniff Pro</h3>
               <p class="x-price"><span data-p="₹99|$3.99">₹99</span><small>/mo</small></p>
               <p class="x-ann">or <span data-p="₹799|$29.99">₹799</span>/year <span class="x-save">save 33%</span></p>
               <ul class="x-feat"><li>Unlimited checks</li><li>Screenshot scanning</li><li>Deep link scan</li><li>“What to say” scripts for scam calls</li></ul>
@@ -298,52 +411,57 @@
             </div>
             <div class="x-card x-plan x-plan--hi">
               <span class="x-badge">Most popular</span>
-              <h3>Sniff Family</h3>
+              <h3><svg class="x-i" aria-hidden="true"><use href="#i-users"/></svg>Sniff Family</h3>
               <p class="x-price"><span data-p="₹199|$6.99">₹199</span><small>/mo</small></p>
               <ul class="x-feat"><li>Pro for up to 6 people</li><li>Near-miss alerts</li><li>Monthly family report</li></ul>
               <button class="x-go" data-sheet="Sniff Family">Get Sniff Family</button>
             </div>
           </div>
-          <div class="x-api"><p>Banks &amp; telecoms: put Sniff in your app — <b>Sniff API</b></p><button class="x-btn" data-sheet="Sniff API">Talk to us</button></div>
+          <div class="x-api"><p>Banks &amp; telecoms: put Sniff in your app — <b>Sniff API</b></p><button class="x-btn" data-sheet="Sniff API"><svg class="x-i" aria-hidden="true"><use href="#i-phone"/></svg>Talk to us</button></div>
         </section>
       </main>
 
       <nav class="x-tabs" role="tablist" aria-label="Sections">
-        <button role="tab" aria-selected="true" data-go="sniff"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>Sniff</button>
-        <button role="tab" aria-selected="false" data-go="spot"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>Spot It</button>
-        <button role="tab" aria-selected="false" data-go="family"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4 3-6 7-6s7 2 7 6M16 4.5a3.5 3.5 0 0 1 0 7M18 14c2.5.5 4 2.5 4 6"/></svg>Family</button>
-        <button role="tab" aria-selected="false" data-go="pro"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>Pro</button>
+        <button role="tab" aria-selected="true" data-go="sniff"><svg aria-hidden="true"><use href="#i-search"/></svg>Sniff</button>
+        <button role="tab" aria-selected="false" data-go="spot"><svg aria-hidden="true"><use href="#i-eye"/></svg>Spot It</button>
+        <button role="tab" aria-selected="false" data-go="family"><svg aria-hidden="true"><use href="#i-users"/></svg>Family</button>
+        <button role="tab" aria-selected="false" data-go="pro"><svg aria-hidden="true"><use href="#i-sparkles"/></svg>Pro</button>
       </nav>
       <div class="x-toast" id="toast" role="status"></div>
       <div class="x-sheet" id="sheet" hidden>
         <div class="x-sheet__bg" id="sheetBg"></div>
         <div class="x-sheet__box" role="dialog" aria-modal="true" aria-labelledby="sheetT">
           <div class="x-grab"></div>
-          <button class="x-x" id="sheetX" aria-label="Close">✕</button>
+          <button class="x-x" id="sheetX" aria-label="Close"><svg class="x-i" aria-hidden="true"><use href="#i-x"/></svg></button>
           <form class="x-form" id="sheetF">
             <div><h2 id="sheetT">Join the early-access list</h2><p class="x-sub" id="sheetSub" style="margin:0"></p></div>
             <input class="x-in" type="email" id="email" required placeholder="you@example.com" aria-label="Email" autocomplete="email" />
             <button class="x-go" style="margin-top:0">Join the list</button>
           </form>
-          <div class="x-done" id="sheetOk" hidden><svg width="56" height="56"><use href="#logo"/></svg><h2>You're on the list 👃</h2><p class="x-sub" style="margin:0">We'll email you the moment it's ready.</p></div>
+          <div class="x-done" id="sheetOk" hidden><span class="x-ok"><svg class="x-i" aria-hidden="true"><use href="#i-check"/></svg></span><h2>You're on the list</h2><p class="x-sub" style="margin:0">We'll email you the moment it's ready.</p></div>
         </div>
       </div>
     </div>
-    <script src="hark.js"></script>
+    <script src="sniff.js"></script>
     <script>
-      const SNIFF_API_URL = "https://sniff-api.srishankjashankreddy.workers.dev/";
+      const SNIFF_API_URL = "/api/sniff";
+      const SNIFF_API_FALLBACK = "https://sniff-api.srishankjashankreddy.workers.dev/";
       const $ = (s) => document.querySelector(s);
+      const ic = (n) => `<svg class="x-i" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+      const mono = (l) => `<span class="x-mono" aria-hidden="true">${l}</span>`;
+      // [icon, label, text]
       const EX = [
-        ["📦 Parcel at customs", "India Post: Your parcel is held at customs due to incomplete address. Pay ₹49 redelivery fee within 24 hours or it will be returned. Pay here: bit.ly/IndPost-fee"],
-        ["🏦 KYC expires today", "Dear SBI customer, your YONO account will be blocked today as your KYC expires. Update your PAN and verify account now: http://sbi-kyc-update.xyz/login"],
-        ["💸 Earn ₹3,000/day", "Hi! Part-time job from home. Earn ₹3,000/day just by liking YouTube videos. Guaranteed payment daily. Contact our HR on Telegram: t.me/likejobs_hr"],
-        ["👩 Hi mum, new number", "Hi mum, this is my new number, my phone broke. Need money urgently for a bill — can you transfer ₹18,000 to rahul.k22@ybl? Will explain later, please don't tell dad."],
+        ["package", "Parcel at customs", "India Post: Your parcel is held at customs due to incomplete address. Pay ₹49 redelivery fee within 24 hours or it will be returned. Pay here: bit.ly/IndPost-fee"],
+        ["lock", "KYC expires today", "Dear SBI customer, your YONO account will be blocked today as your KYC expires. Update your PAN and verify account now: http://sbi-kyc-update.xyz/login"],
+        ["link", "Earn ₹3,000/day", "Hi! Part-time job from home. Earn ₹3,000/day just by liking YouTube videos. Guaranteed payment daily. Contact our HR on Telegram: t.me/likejobs_hr"],
+        ["users", "Hi mum, new number", "Hi mum, this is my new number, my phone broke. Need money urgently for a bill — can you transfer ₹18,000 to rahul.k22@ybl? Will explain later, please don't tell dad."],
       ];
+      // [monogram letter or icon name, title, subtitle, text]
       const TR = [
-        ["🚔", "Digital arrest calls", "Fake CBI or police on video call", "This is CBI officer Rajesh Kumar. A parcel in your name with drugs was seized by customs. You are under digital arrest. Stay on video call, keep this confidential and transfer ₹95,000 for verification or police will arrest you today."],
-        ["💡", "Fake electricity bill", "“Power cut tonight” SMS", "Dear consumer, your electricity connection will be disconnected tonight at 9:30 PM as last month bill was not updated. Call our officer 9876543210 immediately and install AnyDesk to update."],
-        ["📋", "Task-based jobs", "Pay to unlock “VIP tasks”", "Congratulations! You are selected for an Amazon review task. Complete 3 tasks and earn ₹5,000 per day. Deposit ₹1,000 to unlock VIP tasks. Join Telegram: t.me/amz_tasks"],
-        ["🪙", "Wrong-number crypto", "Friendly chat, then USDT", "Hi, is this Priya? Sorry, wrong number 😊 Nice to meet you anyway! I trade USDT with guaranteed returns of 30% a month, I can teach you. Download our app: tradeprox.top/app.apk"],
+        ["C", "Digital arrest calls", "Fake CBI or police on video call", "This is CBI officer Rajesh Kumar. A parcel in your name with drugs was seized by customs. You are under digital arrest. Stay on video call, keep this confidential and transfer ₹95,000 for verification or police will arrest you today."],
+        ["phone", "Fake electricity bill", "“Power cut tonight” SMS", "Dear consumer, your electricity connection will be disconnected tonight at 9:30 PM as last month bill was not updated. Call our officer 9876543210 immediately and install AnyDesk to update."],
+        ["A", "Task-based jobs", "Pay to unlock “VIP tasks”", "Congratulations! You are selected for an Amazon review task. Complete 3 tasks and earn ₹5,000 per day. Deposit ₹1,000 to unlock VIP tasks. Join Telegram: t.me/amz_tasks"],
+        ["message", "Wrong-number crypto", "Friendly chat, then USDT", "Hi, is this Priya? Sorry, wrong number :) Nice to meet you anyway! I trade USDT with guaranteed returns of 30% a month, I can teach you. Download our app: tradeprox.top/app.apk"],
       ];
       const OFF = ["sbi.co.in", "onlinesbi.sbi", "hdfcbank.com", "icicibank.com", "axisbank.com", "amazon.in", "amazon.com", "fedex.com", "indiapost.gov.in", "paytm.com", "flipkart.com"];
       const brandDom = (m) => { const d = m[0].replace(/^https?:\/\//i, "").split("/")[0].toLowerCase(); return /sbi|hdfc|icici|axis|amazon|fedex|indiapost|paytm|flipkart/.test(d) && !OFF.some((o) => d === o || d.endsWith("." + o)); };
@@ -458,7 +576,7 @@
           for (const l of domLabels(d)) if ((hit = imitates(l))) break;
           if (!hit) continue;
           rng.push([m.index, m.index + m[0].length]);
-          if (!cats.fake) { cats.fake = 70; fm.fake = ["Fake look-alike website", `This imitates ${hit[0]} (real site: ${hit[1]}). Scammers use near-identical names to steal logins.`]; }
+          if (!cats.fake) { cats.fake = 70; fm.fake = ["Fake look-alike website", `This imitates ${hit[0]} (real site: ${hit[1]}). Scammers use near-identical names to steal logins.`, hit[0][0].toUpperCase()]; }
         }
         // A link on its own, with no other text
         const bare = t.trim().match(BARE);
@@ -496,7 +614,7 @@
         for (const [s, e] of rng) { if (e <= i) continue; const st = Math.max(s, i); out += esc(t.slice(i, st)) + "<mark>" + esc(t.slice(st, e)) + "</mark>"; i = e; }
         return out + esc(t.slice(i));
       }
-      const V = { scam: ["SCAM", "#D65A56"], sus: ["SUSPICIOUS", "#D99A35"], safe: ["LOOKS SAFE", "#3FA877"] };
+      const V = { scam: ["SCAM", "var(--scam)", "octagon"], sus: ["SUSPICIOUS", "var(--sus)", "alert"], safe: ["LOOKS SAFE", "var(--safe)", "shield"] };
       let left = 15, summary = "";
       const count = () => { $("#count").innerHTML = left ? `Free checks today: <b>${left} of 15</b> left` : "No free checks left today."; $("#go").disabled = !left; $("#up").hidden = !!left; };
       const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 1600); };
@@ -505,7 +623,7 @@
         if (!t) { $("#msg").focus(); return toast("Paste a message first"); }
         if (!left) return;
         left--; count();
-        const useAI = !!SNIFF_API_URL, rules = analyze(t);
+        const useAI = !!(SNIFF_API_URL || SNIFF_API_FALLBACK), rules = analyze(t);
         $("#out").innerHTML = `<div class="x-load" role="status"><svg width="56" height="56"><use href="#logo"/></svg>${useAI ? "Sniffing with AI…" : "Checking scam patterns…"}</div>`;
         $("#out").scrollIntoView({ behavior: "smooth", block: "start" });
         if (!useAI) return setTimeout(() => show(t, rules), 1000);
@@ -529,10 +647,18 @@
           steps: (Array.isArray(d.what_to_do) ? d.what_to_do : []).map(str).filter(Boolean),
         };
       }
+      // Primary first; on any failure (network, non-200, error field, no verdict) try the fallback. Both failing rejects, so rules show silently.
       async function askAI(t) {
+        let err = new Error("no AI endpoint");
+        for (const url of [SNIFF_API_URL, SNIFF_API_FALLBACK].filter(Boolean)) {
+          try { return await callAI(url, t); } catch (e) { err = e; }
+        }
+        throw err;
+      }
+      async function callAI(url, t) {
         const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), 12000);
         try {
-          const res = await fetch(SNIFF_API_URL, { method: "POST", signal: ctl.signal, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: t }) });
+          const res = await fetch(url, { method: "POST", signal: ctl.signal, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ message: t }) });
           if (!res.ok) throw new Error("HTTP " + res.status);
           return clean(await res.json());
         } finally { clearTimeout(tm); }
@@ -565,20 +691,20 @@
           type: a.type || r.type, sum: a.summary, flags, rng, steps: a.steps.length ? a.steps : r.steps, src: "ai",
         };
       }
-      $("#privNote").textContent = SNIFF_API_URL ? "Checked by Sniff AI. Your messages are never stored." : "Free, instant — nothing leaves your phone.";
+      $("#privNote").textContent = SNIFF_API_URL || SNIFF_API_FALLBACK ? "Checked by Sniff AI. Your messages are never stored." : "Free, instant — nothing leaves your phone.";
       const ring = (s) => `<div class="x-ring" role="img" aria-label="Risk ${s} out of 100"><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="t" cx="18" cy="18" r="16" pathLength="100"/><circle class="f" cx="18" cy="18" r="16" pathLength="100" stroke-dasharray="${Math.max(s, 1)} 100"/></svg><div><b>${s}</b><small>/ 100 risk</small></div></div>`;
       function show(t, r) {
-        const [word, col] = V[r.v], top3 = r.flags.slice(0, 3).map((f) => f[0]).join(", ");
-        summary = `⚠️ Sniff flagged this as ${r.v === "safe" ? "LOOKS SAFE" : `a ${word}`} (${r.type}).` + (r.flags.length ? ` Red flags: ${top3}.` : "") + " Don't click or pay. Check any message free: sniff.app";
+        const [word, col, icon] = V[r.v], top3 = r.flags.slice(0, 3).map((f) => f[0]).join(", ");
+        summary = (r.v === "safe" ? `Sniff checked this message: LOOKS SAFE (${r.type}).` : `Warning: Sniff flagged this as ${r.v === "scam" ? "a SCAM" : "SUSPICIOUS"} (${r.type}).`) + (r.flags.length ? ` Red flags: ${top3}.` : "") + (r.v === "safe" ? "" : " Don't click or pay.") + " Check any message free: sniff.app";
         $("#out").innerHTML = `<div class="x-res" style="--c:${col}">
-          <div class="x-band"><div><h2>${word}</h2><p class="x-type">${esc(r.type)}</p>${r.sum ? `<p class="x-sum">${esc(r.sum)}</p>` : ""}<span class="x-ai">${r.src === "ai" ? "AI + rules" : "Rules"}</span></div>${ring(r.score)}</div>
-          <div class="x-sec"><h3>Red flags</h3>${r.flags.length ? `<ul class="x-flags">${r.flags.map(([a, b]) => `<li><b>${esc(a)}</b>${esc(b)}</li>`).join("")}</ul>` : "<p style='margin:0;font-size:14px'>No red flags found.</p>"}</div>
+          <div class="x-band"><div><h2>${ic(icon)}${word}</h2><p class="x-type">${esc(r.type)}</p>${r.sum ? `<p class="x-sum">${esc(r.sum)}</p>` : ""}<span class="x-ai">${r.src === "ai" ? ic("sparkles") + "AI + rules" : "Rules"}</span></div>${ring(r.score)}</div>
+          <div class="x-sec"><h3>Red flags</h3>${r.flags.length ? `<ul class="x-flags">${r.flags.map(([a, b, m]) => `<li><b>${m ? mono(esc(m)) : ""}${esc(a)}</b>${esc(b)}</li>`).join("")}</ul>` : "<p style='margin:0;font-size:14px'>No red flags found.</p>"}</div>
           <div class="x-sec"><h3>Your message</h3><div class="x-msg">${highlight(t, r.rng)}</div></div>
           <div class="x-sec"><h3>What to do now</h3><ol class="x-steps">${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol></div>
           <div class="x-sec x-acts">
-            ${r.v === "safe" ? "" : `<a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(summary)}">Warn my family</a>`}
-            <button class="x-btn" id="copy">Copy summary</button>
-            <button class="x-btn" id="again">Sniff another</button>
+            ${r.v === "safe" ? "" : `<a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(summary)}">${ic("share")}Warn my family</a>`}
+            <button class="x-btn" id="copy">${ic("copy")}Copy summary</button>
+            <button class="x-btn" id="again">${ic("refresh")}Sniff another</button>
           </div></div>`;
         $("#copy").onclick = copy;
         $("#again").onclick = () => { $("#out").innerHTML = ""; $("#msg").value = ""; window.scrollTo({ top: 0, behavior: "smooth" }); $("#msg").focus(); };
@@ -594,8 +720,8 @@
         document.querySelectorAll(".x-chip,.x-trend button").forEach((x) => x.setAttribute("aria-pressed", x === b));
         window.scrollTo({ top: 0, behavior: "smooth" }); toast("Example loaded — tap Sniff it");
       };
-      EX.forEach(([l, t]) => { const b = document.createElement("button"); b.className = "x-chip"; b.textContent = l; b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#chips").appendChild(b); });
-      TR.forEach(([i, h, s, t]) => { const b = document.createElement("button"); b.innerHTML = `<i>${i}</i><b>${h}</b><small>${s}</small>`; b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#trend").appendChild(b); });
+      EX.forEach(([i, l, t]) => { const b = document.createElement("button"); b.className = "x-chip"; b.innerHTML = ic(i) + esc(l); b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#chips").appendChild(b); });
+      TR.forEach(([i, h, s, t]) => { const b = document.createElement("button"); b.innerHTML = `<span class="x-ico" aria-hidden="true">${i.length === 1 ? i : ic(i)}</span><b>${h}</b><small>${s}</small>`; b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#trend").appendChild(b); });
       $("#go").onclick = run;
       const tab = (n) => {
         document.querySelectorAll("[data-go]").forEach((x) => x.setAttribute("aria-selected", x.dataset.go === n));
@@ -612,14 +738,14 @@
       const POOL = [
         ["VM-FDXPRS", "SMS", "FedEx: Your shipment #77412 is on hold due to unpaid customs duty of ₹38. Pay within 12 hrs to avoid return: fedex-in.delivery-fee.top/pay", 1, "The link isn't fedex.com — couriers don't text you for tiny surprise fees."],
         ["+91 70214 88301", "SMS", "Dear Customer, your SBI YONO account will be suspended today. Complete your KYC now to avoid blocking: sbi-kyc-verify.in/login", 1, "SBI never sends KYC links by SMS, and never from a normal mobile number."],
-        ["+44 7700 900123", "WhatsApp", "Hello! I'm Ananya from HR 😊 Earn ₹2,500–₹8,000 daily just by rating hotels on Google. Join our Telegram to start: t.me/hotelreview_job", 1, "Paid “tasks” on Telegram always end with you depositing money to unlock bigger ones."],
+        ["+44 7700 900123", "WhatsApp", "Hello! I'm Ananya from HR :) Earn ₹2,500–₹8,000 daily just by rating hotels on Google. Join our Telegram to start: t.me/hotelreview_job", 1, "Paid “tasks” on Telegram always end with you depositing money to unlock bigger ones."],
         ["Video call · “CBI Mumbai”", "Call script", "“This is Inspector Vikram Singh, CBI. Your Aadhaar is linked to a money-laundering case. You are under digital arrest. Don't disconnect, don't tell your family, and transfer your savings to an RBI verification account.”", 1, "“Digital arrest” doesn't exist — real police never demand money or secrecy on a video call."],
         ["+92 300 1234567", "WhatsApp", "Congratulations!! Your number has won ₹25,00,000 in the KBC Lucky Draw. To claim, pay ₹12,500 processing fee and contact manager Rana Pratap on WhatsApp.", 1, "You can't win a draw you never entered — and real prizes never charge a fee."],
         ["AD-SBIOTP", "SMS", "482913 is your OTP for a transaction of ₹2,340.00 at AMAZON on your SBI card ending 4417. Valid for 10 mins. Never share this OTP with anyone. Not you? Call the number on the back of your card.", 0, "No link, no ask — it tells you never to share the OTP. That's how real banks text."],
         ["AX-AMAZON", "SMS", "Out for delivery: Your package with boAt Airdopes 141 will arrive today by 9 PM. Track your package: amazon.in/progress-tracker", 0, "The link is the real amazon.in, and nothing asks you to pay or log in."],
         ["VM-SWIGGY", "SMS", "Your Swiggy order #158204 from Meghana Foods is confirmed! ₹486 paid via UPI. Arriving in 32 mins.", 0, "It confirms something you ordered — no link, no request, nothing to pay."],
         ["AD-AIRTEL", "SMS", "Dear customer, your Airtel Postpaid bill of ₹599 for 98XXXXX210 is due on 18 Jun. Pay via the Airtel Thanks app. Ignore if already paid.", 0, "No link and no threat — it points you to the official app you already use."],
-        ["Rohan 🍕", "WhatsApp", "Dinner at Toit tomorrow at 8? Priya and Karan are in. I'll book a table for 5 😄", 0, "A friend making plans from a saved contact — no money, no links, no rush."],
+        ["Rohan", "WhatsApp", "Dinner at Toit tomorrow at 8? Priya and Karan are in. I'll book a table for 5 :D", 0, "A friend making plans from a saved contact — no money, no links, no rush."],
       ];
       const PCT = [5, 18, 35, 56, 78, 94];
       const shuffle = (a) => { a = [...a]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -634,22 +760,22 @@
         const [f, c, t] = G.q[G.i];
         $("#game").innerHTML = `<div class="x-card"><div class="x-gtop"><span>Message ${G.i + 1} of 5</span><span class="x-dots" id="dots">${dots()}</span></div>
           <p class="x-from">${esc(f)} <small>· ${c}</small></p><div class="x-msg">${esc(t)}</div></div>
-          <div class="x-vote" id="vote"><button data-a="scam">SCAM</button><button data-a="legit">LEGIT</button></div><div id="rev"></div>`;
+          <div class="x-vote" id="vote"><button data-a="scam">${ic("octagon")}SCAM</button><button data-a="legit">${ic("shield")}LEGIT</button></div><div id="rev"></div>`;
         $("#vote").onclick = (e) => { const b = e.target.closest("button"); b && answer(b.dataset.a === "scam"); };
       }
       function answer(saidScam) {
         const scam = !!G.q[G.i][3], ok = saidScam === scam;
         G.r.push(ok); $("#vote").hidden = true; $("#dots").innerHTML = dots();
-        $("#rev").innerHTML = `<div class="x-res" style="--c:${scam ? "#D65A56" : "#3FA877"}"><div class="x-band"><div><h2>${scam ? "SCAM" : "LEGIT"}</h2><p class="x-type">${ok ? "✓ You got it" : "✗ Not quite"}</p></div></div>
+        $("#rev").innerHTML = `<div class="x-res" style="--c:${scam ? "var(--scam)" : "var(--safe)"}"><div class="x-band"><div><h2>${ic(scam ? "octagon" : "shield")}${scam ? "SCAM" : "LEGIT"}</h2><p class="x-type">${ok ? ic("check") + "You got it" : ic("x") + "Not quite"}</p></div></div>
           <div class="x-sec"><p class="x-why">${G.q[G.i][4]}</p></div></div><button class="x-go" id="next">${G.i < 4 ? "Next" : "See my score"}</button>`;
         $("#next").onclick = () => { G.i++; G.i < 5 ? drawQ() : end(); window.scrollTo({ top: 0, behavior: "smooth" }); };
         $("#next").focus({ preventScroll: true });
       }
       function end() {
-        const s = G.r.filter(Boolean).length, txt = `I scored ${s}/5 on today's Sniff scam test. Bet you can't beat me 👃 sniff.app/spot`;
+        const s = G.r.filter(Boolean).length, txt = `I scored ${s}/5 on today's Sniff scam test. Bet you can't beat me. sniff.app/spot`;
         $("#game").innerHTML = `<div class="x-card x-ph"><svg width="56" height="56"><use href="#logo"/></svg><p class="x-big">${s}/5</p><h2>Sharper than ${PCT[s]}% of players</h2>
-          <p class="x-streak">🔥 Day 1 streak — 5 new ones tomorrow</p>
-          <div class="x-acts"><a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(txt)}">Challenge a friend</a><button class="x-btn" id="replay">Play again</button></div></div>`;
+          <p class="x-streak">${ic("flame")}Day 1 streak — 5 new ones tomorrow</p>
+          <div class="x-acts"><a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(txt)}">${ic("share")}Challenge a friend</a><button class="x-btn" id="replay">${ic("refresh")}Play again</button></div></div>`;
         $("#replay").onclick = newGame;
       }
       newGame();
@@ -662,12 +788,12 @@
         $("#fcount").textContent = `${fam.length} of 6`;
         const slots = fam.length < 6 ? ["Mum", "Dad"].filter((r) => !fam.some((m) => m.rel === r)).concat("someone").slice(0, 6 - fam.length) : [];
         $("#fam").innerHTML = fam.map((m) => `<div class="x-card x-mem"><div class="x-who"><span class="x-av">${esc(m.name[0].toUpperCase())}</span><div><b>${esc(m.name)}</b><small>${m.rel}</small></div><span class="x-tag">Invite pending</span></div>
-            <a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent("I added you to Sniff Family so scammers can't fool us. Tap to join: sniff.app/f/" + m.code)}">Send invite on WhatsApp</a></div>`).join("")
+            <a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent("I added you to Sniff Family so scammers can't fool us. Tap to join: sniff.app/f/" + m.code)}">${ic("message")}Send invite on WhatsApp</a></div>`).join("")
           + slots.map((s) => s === fOpen
             ? `<form class="x-card x-form" id="fform"><input class="x-in" id="fname" required maxlength="24" placeholder="Their name" aria-label="Name" />
                 <select class="x-in" id="frel" aria-label="Relation">${REL.map((r) => `<option${r === (s === "someone" ? "Grandparent" : s) ? " selected" : ""}>${r}</option>`).join("")}</select>
                 <div class="x-two"><button type="button" class="x-btn" id="fcancel">Cancel</button><button class="x-btn x-btn--wa">Add</button></div></form>`
-            : `<button class="x-slot" data-s="${s}">+ Add ${s}</button>`).join("");
+            : `<button class="x-slot" data-s="${s}">${ic("users")}Add ${s}</button>`).join("");
         document.querySelectorAll(".x-slot").forEach((b) => (b.onclick = () => { fOpen = b.dataset.s; drawFam(); $("#fname").focus(); }));
         if ($("#fform")) {
           $("#fcancel").onclick = () => { fOpen = null; drawFam(); };
