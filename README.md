@@ -43,7 +43,7 @@ assistant.js # on-screen assistant: install prompt, share target, clipboard, scr
 assistant.css
 sw.js        # service worker: offline shell, share target
 manifest.webmanifest
-icons/       # app icons made from the Sniff beagle
+icons/       # app icons: minimal Sniff mark (open ring + accent dot), see logo.svg
 api/sniff.js # POST {message} or {image} -> verdict JSON (Groq)
 Sniff.css     # base styles
 sniff.js      # base helpers
