@@ -15,7 +15,8 @@
     <meta property="og:image" content="https://sniff-orpin.vercel.app/og.png" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@sniffoffical" />
-    <link rel="icon" href="/og.png" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#FAF7F2" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -35,7 +36,7 @@
     <div class="x-bg" aria-hidden="true"></div>
     <div class="x-app" id="top">
       <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-        <symbol id="logo" viewBox="0 0 32 32"><g fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 4c.6 5.5-4 9.6-4 14.2a4.3 4.3 0 0 0 4.3 4.3h1.7a2.1 2.1 0 0 0 0-4.2"/><path d="M17.5 11.5c1.4-1.4 2.9 1.4 4.3 0s2.9 1.4 4.3 0"/><path d="M17.5 16.5c1.4-1.4 2.9 1.4 4.3 0s2.9 1.4 4.3 0"/><path d="M17.5 21.5c1.4-1.4 2.9 1.4 4.3 0"/></g></symbol>
+        <symbol id="logo" viewBox="0 0 512 512"><rect width="512" height="512" rx="120" fill="#111"/><path d="M383 240.4 A128 128 0 1 1 271.6 129" fill="none" stroke="#fff" stroke-width="58" stroke-linecap="round"/><circle cx="346.5" cy="165.5" r="34" fill="#FF5A1F"/></symbol>
         <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
         <symbol id="i-alert" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></symbol>
         <symbol id="i-octagon" viewBox="0 0 24 24"><path d="M2.586 16.726A2 2 0 0 1 2 15.312V8.688a2 2 0 0 1 .586-1.414l4.688-4.688A2 2 0 0 1 8.688 2h6.624a2 2 0 0 1 1.414.586l4.688 4.688A2 2 0 0 1 22 8.688v6.624a2 2 0 0 1-.586 1.414l-4.688 4.688a2 2 0 0 1-1.414.586H8.688a2 2 0 0 1-1.414-.586z"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></symbol>
@@ -77,7 +78,7 @@
         <section data-tab="sniff">
           <h1 class="sn-vh">Sniff: free scam checker for SMS, WhatsApp messages, links, phone numbers and screenshots</h1>
           <div class="sn-hello">
-            <img class="sn-av" src="/icons/sniff-avatar.png" alt="" width="64" height="64" />
+            <img class="sn-av" src="/icons/mark.svg" alt="" width="64" height="64" />
             <div class="sn-bubble" id="hello">
               <p class="sn-say">Hi, I'm Sniff.</p>
               <p>Not sure about a message, link or number? Show me. I'll tell you if it's safe to click.</p>
@@ -374,7 +375,7 @@
       let left = 15, summary = "";
       const count = () => { $("#count").innerHTML = left ? `Free checks today: <b>${left} of 15</b> left` : "No free checks left today."; $("#go").disabled = !left; $("#up").hidden = !!left; };
       const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 1600); };
-      const AV = `<img class="sn-av sn-av--sm" src="/icons/sniff-avatar.png" alt="" width="44" height="44" />`;
+      const AV = `<img class="sn-av sn-av--sm" src="/icons/mark.svg" alt="" width="44" height="44" />`;
       const thinking = (msg, img) => `<div class="sn-talk" role="status">${AV}<div class="sn-bubble">${img ? `<img class="sn-thumb sn-thumb--sm" src="${img}" alt="Your screenshot" />` : ""}<p>${msg}</p><span class="sn-dots" aria-hidden="true"><i></i><i></i><i></i></span></div></div>`;
       function run() {
         const t = $("#msg").value.trim();
