@@ -39,6 +39,12 @@ No API key ever ships in the front end.
 
 ```
 index.html   # the whole app (UI, rules engine, game, share cards)
+assistant.js # on-screen assistant: install prompt, share target, clipboard, screenshots, watch mode
+assistant.css
+sw.js        # service worker: offline shell, share target
+manifest.webmanifest
+icons/       # app icons made from the Sniff beagle
+api/sniff.js # POST {message} or {image} -> verdict JSON (Groq)
 Sniff.css     # base styles
 sniff.js      # base helpers
 README.md
@@ -109,7 +115,9 @@ You can also push to GitHub and import the repo in Vercel: choose **Framework pr
 ## Roadmap
 
 - [ ] WhatsApp bot: forward a message to Sniff and get a verdict back
-- [ ] Screenshot (OCR) scanning
+- [x] Screenshot scanning (Groq vision) and share-to-Sniff from the phone share sheet
+- [x] Installable app (PWA) with offline shell
+- [x] Desktop "watch my screen" mode (Chrome / Edge, Document Picture-in-Picture)
 - [ ] Link reputation lookups (Safe Browsing / domain-age data)
 - [ ] Accounts, saved streaks and real Family Shield alerts
 - [ ] Payments (Razorpay / Stripe) for Pro and Family
