@@ -1,5 +1,5 @@
 // Sniff service worker: offline app shell, network-first for the API, and the share target.
-const VERSION = "sniff-v3";
+const VERSION = "sniff-v4";
 const SHELL = [
   "/",
   "/Sniff.css",
@@ -11,7 +11,10 @@ const SHELL = [
   "/manifest.webmanifest",
   "/icons/icon-192.png",
   "/icons/icon-512.png",
-  "/icons/sniff-avatar.png",
+  "/icons/mark.svg",
+  "/logo.svg",
+  "/icons/maskable-512.png",
+  "/icons/apple-touch-icon.png",
 ];
 const SHARE_CACHE = "sniff-share";
 
