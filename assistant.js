@@ -5,7 +5,7 @@
   var UI = window.SniffUI;
   if (!UI) return;
   var $ = UI.$, ic = UI.ic, esc = UI.esc, toast = UI.toast, store = UI.store;
-  var AVATAR = "/icons/sniff-avatar.png";
+  var AVATAR = "/icons/mark.svg";
   var ua = navigator.userAgent || "";
   var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
   var isMobile = isIOS || /Android|Mobi/i.test(ua);
