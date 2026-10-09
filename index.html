@@ -16,12 +16,20 @@
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@sniffoffical" />
     <link rel="icon" href="/og.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#FAF7F2" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Sniff" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Sniff","url":"https://sniff-orpin.vercel.app/","applicationCategory":"SecurityApplication","operatingSystem":"Web","description":"Free AI scam checker for SMS, links and phone numbers in India.","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}}</script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" />
     <link rel="stylesheet" href="Sniff.css" />
     <link rel="stylesheet" href="sniff-inline.css" />
+    <link rel="stylesheet" href="assistant.css" />
   </head>
   <body>
     <div class="x-bg" aria-hidden="true"></div>
@@ -52,6 +60,14 @@
         <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></symbol>
         <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
         <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
+        <symbol id="i-clipboard" viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></symbol>
+        <symbol id="i-monitor" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></symbol>
+        <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></symbol>
+        <symbol id="i-stop" viewBox="0 0 24 24"><rect width="14" height="14" x="5" y="5" rx="2"/></symbol>
+        <symbol id="i-upload" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/></symbol>
+        <symbol id="i-smartphone" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></symbol>
+        <symbol id="i-ios-share" viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="m16 6-4-4-4 4"/><path d="M12 2v13"/></symbol>
+        <symbol id="i-pip" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><rect width="8" height="6" x="12" y="12" rx="1"/></symbol>
         <symbol id="i-package" viewBox="0 0 24 24"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 8.7 5 8.7-5"/></symbol>
       </svg>
       <header class="x-top"><svg width="30" height="30" aria-hidden="true"><use href="#logo"/></svg><b>sniff<em id="wm"></em></b><span>Sniff it before you trust it.</span><button class="x-acct" id="acct" aria-label="Account" aria-haspopup="true"><svg class="x-i" aria-hidden="true"><use href="#i-user"/></svg></button>
@@ -59,19 +75,43 @@
 
       <main>
         <section data-tab="sniff">
-          <h1 class="x-h1">Got a weird message? Paste it. <em>We'll sniff it.</em></h1>
-          <p class="x-sub">Texts, WhatsApp forwards, links, numbers. <span class="x-priv"><svg class="x-i" aria-hidden="true"><use href="#i-lock"/></svg><span id="privNote">Free, instant — nothing leaves your phone.</span></span></p>
-          <div class="x-card x-field"><textarea class="x-ta" id="msg" aria-label="Message to check" placeholder="Paste the message, link or number here…"></textarea></div>
-          <div class="x-chips" id="chips"></div>
-          <button class="x-go" id="go">Sniff it</button>
+          <h1 class="sn-vh">Sniff: free scam checker for SMS, WhatsApp messages, links, phone numbers and screenshots</h1>
+          <div class="sn-hello">
+            <img class="sn-av" src="/icons/sniff-avatar.png" alt="" width="64" height="64" />
+            <div class="sn-bubble" id="hello">
+              <p class="sn-say">Hi, I'm Sniff.</p>
+              <p>Not sure about a message, link or number? Show me. I'll tell you if it's safe to click.</p>
+            </div>
+          </div>
+          <div class="x-card x-field sn-box"><label class="sn-vh" for="msg">Paste or share anything suspicious</label><textarea class="x-ta" id="msg" placeholder="Paste or share anything suspicious"></textarea></div>
+          <button class="x-go" id="go">Check it</button>
+          <div class="sn-alt">
+            <button class="x-btn" id="pasteBtn" type="button"><svg class="x-i" aria-hidden="true"><use href="#i-clipboard"/></svg>Check what I copied</button>
+            <button class="x-btn" id="shotBtn" type="button"><svg class="x-i" aria-hidden="true"><use href="#i-image"/></svg>Upload a screenshot</button>
+            <input type="file" id="shotIn" accept="image/*" hidden />
+          </div>
+          <button class="x-btn sn-watchbtn" id="watchBtn" type="button" hidden><svg class="x-i" aria-hidden="true"><use href="#i-monitor"/></svg>Let Sniff watch my screen</button>
           <p class="x-count" id="count"></p>
+          <p class="sn-priv"><svg class="x-i" aria-hidden="true"><use href="#i-lock"/></svg><span id="privNote">Checked by Sniff AI. Your messages are never stored.</span></p>
           <div id="out"></div>
           <div class="x-card x-up" id="up" hidden>
             <h3><svg class="x-i" aria-hidden="true"><use href="#i-lock"/></svg>You've used today's 15 free checks</h3>
-            <p>Pro is coming soon — join early access. It brings unlimited checks, screenshot scanning and link reputation lookups.</p>
+            <p>Pro is coming soon. Join early access for unlimited checks, all-day screen watching and link reputation lookups.</p>
             <button class="x-go" id="toPro"><svg class="x-i" aria-hidden="true"><use href="#i-sparkles"/></svg>Join early access</button>
             <button class="x-link" id="reset">Continue free (demo)</button>
           </div>
+          <div id="install"></div>
+          <div class="x-card sn-how" id="how">
+            <h2 class="x-h2">How Sniff <em>sees things</em></h2>
+            <ul class="sn-steps">
+              <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-share"/></svg></span><p><b>Share it to Sniff.</b> Once Sniff is on your phone, tap Share on any message, link or screenshot and pick Sniff.</p></li>
+              <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-clipboard"/></svg></span><p><b>Or copy it.</b> Copy the text, open Sniff and tap Check what I copied.</p></li>
+              <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-monitor"/></svg></span><p><b>On a computer,</b> Sniff can watch your screen in Chrome or Edge and warn you before you click.</p></li>
+            </ul>
+            <p class="sn-honest">On a phone, Sniff can't watch your screen by itself. You share or screenshot things to it.</p>
+          </div>
+          <h2 class="x-h2">Try an example</h2>
+          <div class="x-chips" id="chips"></div>
           <h2 class="x-h2">Going around this week</h2>
           <div class="x-trend" id="trend"></div>
         </section>
@@ -94,7 +134,7 @@
           <p class="x-sub">Everything in Sniff, with no daily limit. Join early access and we'll tell you the day it launches.</p>
           <ul class="x-card x-pro">
             <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-infinity"/></svg></span>Unlimited checks</li>
-            <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-image"/></svg></span>Screenshot scanning</li>
+            <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-monitor"/></svg></span>All-day screen watching</li>
             <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-link"/></svg></span>Link reputation lookups</li>
             <li><span class="x-ico"><svg class="x-i" aria-hidden="true"><use href="#i-zap"/></svg></span>Priority AI</li>
           </ul>
@@ -334,19 +374,49 @@
       let left = 15, summary = "";
       const count = () => { $("#count").innerHTML = left ? `Free checks today: <b>${left} of 15</b> left` : "No free checks left today."; $("#go").disabled = !left; $("#up").hidden = !!left; };
       const toast = (m) => { const t = $("#toast"); t.textContent = m; t.classList.add("on"); setTimeout(() => t.classList.remove("on"), 1600); };
+      const AV = `<img class="sn-av sn-av--sm" src="/icons/sniff-avatar.png" alt="" width="44" height="44" />`;
+      const thinking = (msg, img) => `<div class="sn-talk" role="status">${AV}<div class="sn-bubble">${img ? `<img class="sn-thumb sn-thumb--sm" src="${img}" alt="Your screenshot" />` : ""}<p>${msg}</p><span class="sn-dots" aria-hidden="true"><i></i><i></i><i></i></span></div></div>`;
       function run() {
         const t = $("#msg").value.trim();
         if (!t) { $("#msg").focus(); return toast("Paste a message first"); }
-        if (!left) return;
+        if (!left) { $("#up").hidden = false; return; }
         left--; count();
         const useAI = !!(SNIFF_API_URL || SNIFF_API_FALLBACK), rules = analyze(t);
-        $("#out").innerHTML = `<div class="x-load" role="status"><svg width="56" height="56"><use href="#logo"/></svg>${useAI ? "Sniffing with AI…" : "Checking scam patterns…"}</div>`;
+        $("#out").innerHTML = thinking(useAI ? "Sniffing it…" : "Checking scam patterns…");
         $("#out").scrollIntoView({ behavior: "smooth", block: "start" });
         if (!useAI) return setTimeout(() => show(t, rules), 1000);
         $("#go").disabled = true;
         askAI(t)
           .then((a) => show(t, merge(t, a, rules)), () => show(t, rules))
           .finally(count);
+      }
+      // A screenshot (data URL, already downscaled). Uses one free check; refunded if the AI can't read it.
+      async function checkImage(dataURL, thumb) {
+        if (!left) { $("#up").hidden = false; $("#up").scrollIntoView({ behavior: "smooth", block: "center" }); return; }
+        left--; count();
+        $("#out").innerHTML = thinking("Reading your screenshot…", thumb || dataURL);
+        $("#out").scrollIntoView({ behavior: "smooth", block: "start" });
+        $("#go").disabled = true;
+        try {
+          const r = await askImage(dataURL, "screenshot");
+          show(r.text, r, { img: thumb || dataURL });
+        } catch (e) {
+          left++;
+          $("#out").innerHTML = `<div class="sn-talk">${AV}<div class="sn-bubble"><p class="sn-say sn-say--sm">I couldn't read that screenshot just now.</p><p>${e && e.busy ? "Lots of people are checking right now. Try again in a minute." : "Try again in a minute, or copy the text and paste it in the box."} Until then: don't click links, pay, or share an OTP.</p></div></div>`;
+        } finally { count(); }
+      }
+      // Ask the AI about an image; returns the merged result (AI + rules on the text it read)
+      async function askImage(dataURL, mode) {
+        const ctl = new AbortController(), tm = setTimeout(() => ctl.abort(), 30000);
+        let res;
+        try {
+          res = await fetch(SNIFF_API_URL, { method: "POST", signal: ctl.signal, headers: { "Content-Type": "application/json" }, body: JSON.stringify({ image: dataURL, mode }) });
+        } finally { clearTimeout(tm); }
+        if (!res.ok) { const e = new Error("HTTP " + res.status); e.busy = res.status === 429; throw e; }
+        const a = clean(await res.json()), text = a.extracted;
+        const r = text ? merge(text, a, analyze(text)) : { score: a.score, v: a.v, type: a.type, sum: a.summary, flags: a.flags.map((f) => [f.title, f.expl]), rng: [], steps: a.steps, src: "ai" };
+        r.text = text; r.nothing = a.nothing && r.v === "safe"; r.shown = a.shown;
+        return r;
       }
 
       // AI via the Sniff proxy, which holds the key. Expects {verdict, score, scam_type, red_flags[{title, explanation, quote}], what_to_do[], summary}.
@@ -361,6 +431,7 @@
           v, score: Math.round(Math.max(0, Math.min(100, score))), type: str(d.scam_type), summary: str(d.summary),
           flags: (Array.isArray(d.red_flags) ? d.red_flags : []).filter((f) => f && str(f.title)).map((f) => ({ title: str(f.title), expl: str(f.explanation), quote: str(f.quote) })),
           steps: (Array.isArray(d.what_to_do) ? d.what_to_do : []).map(str).filter(Boolean),
+          extracted: str(d.extracted_text).slice(0, 3000), nothing: d.nothing_to_check === true, shown: str(d.shown),
         };
       }
       // Primary first; on any failure (network, non-200, error field, no verdict) try the fallback. Both failing rejects, so rules show silently.
@@ -409,23 +480,50 @@
       }
       $("#privNote").textContent = SNIFF_API_URL || SNIFF_API_FALLBACK ? "Checked by Sniff AI. Your messages are never stored." : "Free, instant — nothing leaves your phone.";
       const ring = (s) => `<div class="x-ring" role="img" aria-label="Risk ${s} out of 100"><svg viewBox="0 0 36 36" aria-hidden="true"><circle class="t" cx="18" cy="18" r="16" pathLength="100"/><circle class="f" cx="18" cy="18" r="16" pathLength="100" stroke-dasharray="${Math.max(s, 1)} 100"/></svg><div><b>${s}</b><small>/ 100 risk</small></div></div>`;
-      function show(t, r) {
-        const [word, col, icon] = V[r.v], top3 = r.flags.slice(0, 3).map((f) => f[0]).join(", ");
-        summary = (r.v === "safe" ? `Sniff checked this message: LOOKS SAFE (${r.type}).` : `Warning: Sniff flagged this as ${r.v === "scam" ? "a SCAM" : "SUSPICIOUS"} (${r.type}).`) + (r.flags.length ? ` Red flags: ${top3}.` : "") + (r.v === "safe" ? "" : " Don't click or pay.") + " Check any message free: sniff.app";
-        $("#out").innerHTML = `<div class="x-res" style="--c:${col}">
-          <div class="x-band"><div><h2>${ic(icon)}${word}</h2><p class="x-type">${esc(r.type)}</p>${r.sum ? `<p class="x-sum">${esc(r.sum)}</p>` : ""}<span class="x-ai">${r.src === "ai" ? ic("sparkles") + "AI + rules" : "Rules"}</span></div>${ring(r.score)}</div>
-          <div class="x-sec"><h3>Red flags</h3>${r.flags.length ? `<ul class="x-flags">${r.flags.map(([a, b, m]) => `<li><b>${m ? mono(esc(m)) : ""}${esc(a)}</b>${esc(b)}</li>`).join("")}</ul>` : "<p style='margin:0;font-size:14px'>No red flags found.</p>"}</div>
-          <div class="x-sec"><h3>Your message</h3><div class="x-msg">${highlight(t, r.rng)}</div></div>
-          <div class="x-sec"><h3>What to do now</h3><ol class="x-steps">${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol></div>
-          <div class="x-sec x-acts">
+      // The verdict, said the way a friend would say it
+      const SAY = {
+        scam: ["Don't click. Don't reply.", "octagon", (r) => `This looks like a scam${r.type ? ": " + r.type.replace(/\.$/, "") : ""}.`],
+        sus: ["Be careful.", "alert", (r) => `Something here doesn't add up${r.type ? " (" + r.type.replace(/\.$/, "") + ")" : ""}. Check before you act.`],
+        safe: ["Safe to open.", "shield", () => "I didn't find anything risky in this."],
+      };
+      const firstSentence = (s) => { const m = String(s || "").match(/^.*?[.!?](\s|$)/); return (m ? m[0] : String(s || "")).trim(); };
+      const HELP = "Lost money? Call 1930 right away (National Cyber Crime Helpline) or report at cybercrime.gov.in.";
+      function sayParts(r) {
+        const [answer, icon, plainFn] = SAY[r.v];
+        const plain = r.sum || plainFn(r);
+        const reasons = r.flags.slice(0, 3);
+        let steps = r.steps.slice(0, r.v === "safe" ? 2 : 3);
+        if (r.v !== "safe" && !steps.some((x) => /1930/.test(x))) steps = steps.slice(0, 2).concat(HELP);
+        return { answer, icon, plain, reasons, steps };
+      }
+      function show(t, r, extra) {
+        extra = extra || {};
+        const [word, col] = V[r.v], top3 = r.flags.slice(0, 3).map((f) => f[0]).join(", ");
+        const S = sayParts(r);
+        summary = (r.v === "safe" ? `Sniff checked this message: LOOKS SAFE (${r.type}).` : `Warning: Sniff flagged this as ${r.v === "scam" ? "a SCAM" : "SUSPICIOUS"} (${r.type}).`) + (r.flags.length ? ` Red flags: ${top3}.` : "") + (r.v === "safe" ? "" : " Don't click or pay.") + " Check any message free: https://sniff-orpin.vercel.app";
+        const msgBlock = (extra.img ? `<img class="sn-thumb" src="${extra.img}" alt="Your screenshot" />` : "") + (t ? `${extra.img ? "<p class='sn-read'>What I read</p>" : ""}<div class="x-msg">${highlight(t, r.rng)}</div>` : "");
+        $("#out").innerHTML = `<div class="sn-verdict sn-${r.v}" style="--c:${col}">
+          <div class="sn-talk">${AV}<div class="sn-bubble sn-bubble--v">
+            <p class="sn-answer">${ic(S.icon)}<span>${esc(S.answer)}</span></p>
+            <p class="sn-plain">${esc(S.plain)}</p>
+          </div></div>
+          ${S.reasons.length ? `<div class="x-card sn-list"><h3>Why I think so</h3><ul>${S.reasons.map(([a, b]) => `<li><b>${esc(a)}.</b> ${esc(firstSentence(b))}</li>`).join("")}</ul></div>` : ""}
+          <div class="x-card sn-list"><h3>What to do</h3><ol>${S.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol></div>
+          <div class="x-acts sn-acts">
             <div id="famWarn" hidden></div>
             ${r.v === "safe" ? "" : `<a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(summary)}">${ic("share")}Share warning on WhatsApp</a>`}
             <button class="x-btn" id="copy">${ic("copy")}Copy summary</button>
-            <button class="x-btn" id="again">${ic("refresh")}Sniff another</button>
-          </div></div>`;
+            <button class="x-btn" id="again">${ic("refresh")}Check something else</button>
+          </div>
+          <details class="x-res sn-more"><summary>See full details</summary>
+            <div class="x-band"><div><h2>${ic(S.icon)}${word}</h2><p class="x-type">${esc(r.type)}</p><span class="x-ai">${r.src === "ai" ? ic("sparkles") + "AI + rules" : "Rules"}</span></div>${ring(r.score)}</div>
+            <div class="x-sec"><h3>Red flags</h3>${r.flags.length ? `<ul class="x-flags">${r.flags.map(([a, b, m]) => `<li><b>${m ? mono(esc(m)) : ""}${esc(a)}</b>${esc(b)}</li>`).join("")}</ul>` : "<p style='margin:0;font-size:14px'>No red flags found.</p>"}</div>
+            ${msgBlock ? `<div class="x-sec"><h3>${extra.img ? "Your screenshot" : "Your message"}</h3>${msgBlock}</div>` : ""}
+            <div class="x-sec"><h3>All the steps</h3><ol class="x-steps">${r.steps.map((s) => `<li>${esc(s)}</li>`).join("")}</ol></div>
+          </details></div>`;
         $("#copy").onclick = copy;
         $("#again").onclick = () => { $("#out").innerHTML = ""; $("#msg").value = ""; window.scrollTo({ top: 0, behavior: "smooth" }); $("#msg").focus(); };
-        document.dispatchEvent(new CustomEvent("sniff:result", { detail: { id: ++checkId, v: r.v, type: r.type || "", sum: r.sum || (r.flags[0] ? r.flags[0][1] : ""), text: t } }));
+        document.dispatchEvent(new CustomEvent("sniff:result", { detail: { id: ++checkId, v: r.v, type: r.type || "", sum: r.sum || (r.flags[0] ? r.flags[0][1] : ""), text: t || (extra.img ? "(screenshot)" : "") } }));
       }
       let checkId = 0;
       function copy() {
@@ -437,7 +535,7 @@
       const load = (t, b) => {
         const m = $("#msg"); m.textContent = t; m.value = t; $("#out").innerHTML = "";
         document.querySelectorAll(".x-chip,.x-trend button").forEach((x) => x.setAttribute("aria-pressed", x === b));
-        window.scrollTo({ top: 0, behavior: "smooth" }); toast("Example loaded — tap Sniff it");
+        window.scrollTo({ top: 0, behavior: "smooth" }); toast("Example loaded. Tap Check it");
       };
       EX.forEach(([i, l, t]) => { const b = document.createElement("button"); b.className = "x-chip"; b.innerHTML = ic(i) + esc(l); b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#chips").appendChild(b); });
       TR.forEach(([i, h, s, t]) => { const b = document.createElement("button"); b.innerHTML = `<span class="x-ico" aria-hidden="true">${i.length === 1 ? i : ic(i)}</span><b>${h}</b><small>${s}</small>`; b.setAttribute("aria-pressed", "false"); b.onclick = () => load(t, b); $("#trend").appendChild(b); });
@@ -492,7 +590,7 @@
         $("#next").focus({ preventScroll: true });
       }
       function end() {
-        const s = G.r.filter(Boolean).length, txt = `I scored ${s}/5 on today's Sniff scam test. Bet you can't beat me. sniff.app/spot`;
+        const s = G.r.filter(Boolean).length, txt = `I scored ${s}/5 on today's Sniff scam test. Bet you can't beat me. https://sniff-orpin.vercel.app`;
         $("#game").innerHTML = `<div class="x-card x-ph"><svg width="56" height="56"><use href="#logo"/></svg><p class="x-big">${s}/5</p><h2>Sharper than ${PCT[s]}% of players</h2>
           <p class="x-streak">${ic("flame")}Day 1 streak — 5 new ones tomorrow</p>
           <div class="x-acts"><a class="x-btn x-btn--wa" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(txt)}">${ic("share")}Challenge a friend</a><button class="x-btn" id="replay">${ic("refresh")}Play again</button></div></div>`;
@@ -606,6 +704,7 @@
       }
 
       window.SniffUI = {
+        run, checkImage, askImage, sayParts, analyze, count: () => left,
         $, ic, esc, toast, tab, openAuth, closeSheet, setChip, authView, accountsOff, avatar, store, acct, JOIN_RE,
         getJoin: () => pendingJoin,
         clearJoin: () => { pendingJoin = null; store.del("sniff_join"); },
@@ -613,6 +712,7 @@
       };
     </script>
     <script nomodule>window.SniffUI && window.SniffUI.accountsOff();</script>
+    <script src="assistant.js"></script>
     <script type="module">
       const UI = window.SniffUI, { $, ic, esc } = UI;
       const SDK = "https://www.gstatic.com/firebasejs/10.12.5/";
